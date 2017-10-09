@@ -1,4 +1,10 @@
+import { ApiService } from '../com_services/api-service';
+import { NgModule } from '@angular/core';
+
+
+
 export class Entities {
+
 }
 
 export class ApplicationGroupModules{
@@ -7,7 +13,6 @@ export class ApplicationGroupModules{
         public ApplicationGroupID : string,
         public ModuleID:number
     ){
-
     }
 }
 

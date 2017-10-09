@@ -1,10 +1,21 @@
-import 'rxjs/add/operator/toPromise';
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { AppSettings } from '../com_entities/app-settings';
 
+export class Users{
+    constructor(
+        public UserID:number,
+        public UserName : string,
+        public UserFirstName : string,
+        public UserLastName : string,
+        public UserMiddleName : string,
+        public IsActive:boolean
+    ){
+
+    }
+}
 @Injectable()
-export class ApiService {
+export class UserService {
     private headers = new Headers({'Content-Type': 'application/json'});
     private apiUrl = '';
 
@@ -12,9 +23,8 @@ export class ApiService {
         
     }
     
-    public getAll(controller:string): Promise<any[]> {  
-        console.log(controller);
-        this.apiUrl=AppSettings.GETAPIURL(controller);
+    public getAll(): Promise<any[]> {  
+        this.apiUrl=AppSettings.GETAPIURL('Users');
         return this.http
             .get(this.apiUrl, {headers: this.headers})
             .toPromise()
@@ -22,8 +32,8 @@ export class ApiService {
             .catch(AppSettings.handleError);
     }
 
-    public getOne(controller:string,id:string): Promise<any>{
-        this.apiUrl=AppSettings.GETAPIURL(controller);
+    public getOne(id:string): Promise<any>{
+        this.apiUrl=AppSettings.GETAPIURL('Users');
         const url = `${this.apiUrl}/${id}`;
         return this.http
             .get(this.apiUrl, {headers: this.headers})
@@ -32,8 +42,8 @@ export class ApiService {
             .catch(AppSettings.handleError);
     }  
 
-    public postData(controller:string,data:any,id:string): Promise<any>{
-        this.apiUrl=AppSettings.GETAPIURL(controller);
+    public postData(data:any,id:string): Promise<any>{
+        this.apiUrl=AppSettings.GETAPIURL('Users');
         return this.http
           .post(this.apiUrl, JSON.stringify(data), {headers: this.headers})
           .toPromise()
@@ -41,8 +51,8 @@ export class ApiService {
           .catch(AppSettings.handleError);
     }
 
-    public putData(controller:string,data:any,id:string):Promise<any>{
-        this.apiUrl=AppSettings.GETAPIURL(controller);
+    public putData(data:any,id:string):Promise<any>{
+        this.apiUrl=AppSettings.GETAPIURL('Users');
         const url = `${this.apiUrl}/${id}`;
         return this.http
             .put(url, JSON.stringify(data), {headers: this.headers})
@@ -51,8 +61,8 @@ export class ApiService {
             .catch(AppSettings.handleError);
     }
 
-    private deleteData(controller:string,data:any,id:string):Promise<any>{
-        this.apiUrl=AppSettings.GETAPIURL(controller);
+    private deleteData(data:any,id:string):Promise<any>{
+        this.apiUrl=AppSettings.GETAPIURL('Users');
         const url = `${this.apiUrl}/${id}`;
         return this.http
             .delete(url, {headers: this.headers})
