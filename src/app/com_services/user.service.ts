@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { AppSettings } from '../com_entities/app-settings';
+import { ApiService } from './api-service';
 
 export class Users{
     constructor(
@@ -17,57 +18,29 @@ export class Users{
 @Injectable()
 export class UserService {
     private headers = new Headers({'Content-Type': 'application/json'});
-    private apiUrl = '';
+    private controller = 'Users';
 
-    constructor(private http:Http){
+    constructor(private http:Http,private api:ApiService){
         
     }
     
-    public getAll(): Promise<any[]> {  
-        this.apiUrl=AppSettings.GETAPIURL('Users');
-        return this.http
-            .get(this.apiUrl, {headers: this.headers})
-            .toPromise()
-            .then(response => response.json())
-            .catch(AppSettings.handleError);
+    public async getAll(){
+        return await this.api.getAll(this.controller);
     }
 
-    public getOne(id:string): Promise<any>{
-        this.apiUrl=AppSettings.GETAPIURL('Users');
-        const url = `${this.apiUrl}/${id}`;
-        return this.http
-            .get(this.apiUrl, {headers: this.headers})
-            .toPromise()
-            .then(response => response.json())
-            .catch(AppSettings.handleError);
-    }  
-
-    public postData(data:any,id:string): Promise<any>{
-        this.apiUrl=AppSettings.GETAPIURL('Users');
-        return this.http
-          .post(this.apiUrl, JSON.stringify(data), {headers: this.headers})
-          .toPromise()
-          .then(res => res.json())
-          .catch(AppSettings.handleError);
+    public async getOne(id:string){
+        return await this.api.getOne(this.controller,id);
     }
 
-    public putData(data:any,id:string):Promise<any>{
-        this.apiUrl=AppSettings.GETAPIURL('Users');
-        const url = `${this.apiUrl}/${id}`;
-        return this.http
-            .put(url, JSON.stringify(data), {headers: this.headers})
-            .toPromise()
-            .then(res => res.json())
-            .catch(AppSettings.handleError);
+    public async post(data:any){
+        return await this.api.postData(this.controller,data);
     }
 
-    private deleteData(data:any,id:string):Promise<any>{
-        this.apiUrl=AppSettings.GETAPIURL('Users');
-        const url = `${this.apiUrl}/${id}`;
-        return this.http
-            .delete(url, {headers: this.headers})
-            .toPromise()
-            .then(res => res.json())
-            .catch(AppSettings.handleError);
+    public async put(data:any,id:string){
+        return await this.api.putData(this.controller,data,id);
+    }
+
+    public async delete(id:string){
+        return await this.api.deleteData(this.controller,id);
     }
 }

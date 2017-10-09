@@ -14,6 +14,7 @@ export class AppComponent {
     this.sample();
   }
   users:Users[]=[];
+  user:Users=null;
 
   async sample(){
     // this.appModules=<ApplicationGroupModules> await this.app.get();
@@ -21,6 +22,10 @@ export class AppComponent {
     this.users=<Users[]>await this.api.getAll();
     console.log(user);
     console.log(this.users[0]);
+    console.log(await this.api.delete('3'));
+
+    this.user=new Users(3,'martiab','Albert Rick','Martirez','',true);
+    console.log(await this.api.post(this.user));
     // console.log(<Users[]> await this.api.getAll());
     // console.log(await this.api.getAll(Controllers.C_APPLICATIONS));
   }

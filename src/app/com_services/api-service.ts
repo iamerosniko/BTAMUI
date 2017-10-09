@@ -32,7 +32,7 @@ export class ApiService {
             .catch(AppSettings.handleError);
     }  
 
-    public postData(controller:string,data:any,id:string): Promise<any>{
+    public postData(controller:string,data:any): Promise<any>{
         this.apiUrl=AppSettings.GETAPIURL(controller);
         return this.http
           .post(this.apiUrl, JSON.stringify(data), {headers: this.headers})
@@ -51,7 +51,7 @@ export class ApiService {
             .catch(AppSettings.handleError);
     }
 
-    private deleteData(controller:string,data:any,id:string):Promise<any>{
+    public deleteData(controller:string,id:string):Promise<any>{
         this.apiUrl=AppSettings.GETAPIURL(controller);
         const url = `${this.apiUrl}/${id}`;
         return this.http
