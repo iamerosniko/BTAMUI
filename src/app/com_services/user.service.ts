@@ -3,18 +3,15 @@ import { Headers, Http } from '@angular/http';
 import { AppSettings } from '../com_entities/app-settings';
 import { ApiService } from './api-service';
 
-export class Users{
-    constructor(
-        public UserID:number,
-        public UserName : string,
-        public UserFirstName : string,
-        public UserLastName : string,
-        public UserMiddleName : string,
-        public IsActive:boolean
-    ){
-
-    }
+export interface Users{
+    UserID?:number,
+    UserName ?: string,
+    UserFirstName ?: string,
+    UserLastName ?: string,
+    UserMiddleName ?: string,
+    IsActive ?: boolean
 }
+
 @Injectable()
 export class UserService {
     private headers = new Headers({'Content-Type': 'application/json'});
@@ -42,5 +39,9 @@ export class UserService {
 
     public async delete(id:string){
         return await this.api.deleteData(this.controller,id);
+    }
+
+    configure(settings: Users) : void {
+        Object.assign(this, settings);
     }
 }

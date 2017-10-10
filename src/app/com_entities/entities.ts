@@ -104,6 +104,14 @@ export class Tables{
 }
 
 
+
+export class UserEntity{
+    constructor(
+      public UserName:string
+    ){
+  
+    }
+  }
 export class Users{
     constructor(
         public UserID:number,
