@@ -19,8 +19,8 @@ export class AppComponent {
     this.createForm();
   }
   users:Users[]=[];
-  user:Users={UserName:'blanlui',IsActive:true,UserFirstName:'Luis Alfredo',UserLastName:'Blanco',UserMiddleName:'Borja'};
-  // user:Users={};
+  // user:Users={UserName:'blanlui',IsActive:true,UserFirstName:'Luis Alfredo',UserLastName:'Blanco',UserMiddleName:'Borja'};
+  user:Users={};
   sampleEntity:UserEntity;
   async sample(){
     // this.appModules=<ApplicationGroupModules> await this.app.get();
@@ -41,6 +41,9 @@ export class AppComponent {
       name:[ this.user.UserName, Validators.required ], // <--- the FormControl called "name"
     });
 //    this.fill();
+console.log(this.heroForm.value);
+
+console.log(this.heroForm.status);
   }
 
 
