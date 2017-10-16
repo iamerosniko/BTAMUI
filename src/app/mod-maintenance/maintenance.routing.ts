@@ -1,13 +1,14 @@
 import { NgModule,OnInit } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
+import { MaintenanceComponent } from './maintenance/maintenance.component';
 const appRoutes: Routes = [
     
-    { path: '', redirectTo: 'Applications', pathMatch: 'full' },
-    { path: '**', redirectTo: '' }
+    { path: 'Maintenance', component: MaintenanceComponent }
 ];
 
 @NgModule ({
-    imports: [ RouterModule.forRoot(appRoutes, {useHash: true}) ],
+    imports: [ RouterModule.forChild(appRoutes) ],
     exports: [ RouterModule ]
 })
 

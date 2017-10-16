@@ -8,7 +8,8 @@ import { HttpModule} from '@angular/http';
 
 import { AppRouting } from './app.routing';
 
-import { ApplicationsModule } from './mod-applications/applications.module'
+import { ApplicationsModule } from './mod-applications/applications.module';
+import { MaintenanceModule } from './mod-maintenance/maintenance.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,6 +17,7 @@ import { ApplicationsModule } from './mod-applications/applications.module'
   imports: [
     BrowserAnimationsModule,
     ApplicationsModule,
+    MaintenanceModule,
     BrowserModule,
     FormsModule,
     AppRouting,
