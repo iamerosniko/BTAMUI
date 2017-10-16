@@ -15,11 +15,11 @@ import { MaintenanceModule } from './mod-maintenance/maintenance.module';
     AppComponent,
   ],
   imports: [
+    BrowserModule,
+    FormsModule,
     BrowserAnimationsModule,
     ApplicationsModule,
     MaintenanceModule,
-    BrowserModule,
-    FormsModule,
     AppRouting,
   ],
   bootstrap: [AppComponent]

@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 const appRoutes: Routes = [
     
     { path: '', redirectTo: '/Applications', pathMatch: 'full' },
-    { path: '**', redirectTo: '' }
+    { path: '**', redirectTo: '/Applications' }
 ];
 
 @NgModule ({
