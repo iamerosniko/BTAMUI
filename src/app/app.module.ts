@@ -1,22 +1,25 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { AppComponent } from './app.component';
 import { HttpModule} from '@angular/http';
-import { ApiService } from './com_services/api-service';
 
-import { UserService } from './com_services/user.service';
+import { AppRouting } from './app.routing';
 
-import { ReactiveFormsModule,FormsModule } from '@angular/forms';  // <-- #1 import 
-
+import { ApplicationsModule } from './mod-applications/applications.module'
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
-    ReactiveFormsModule,FormsModule,
-    BrowserModule,HttpModule
+    BrowserAnimationsModule,
+    ApplicationsModule,
+    BrowserModule,
+    FormsModule,
+    AppRouting,
   ],
-  providers: [ApiService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
