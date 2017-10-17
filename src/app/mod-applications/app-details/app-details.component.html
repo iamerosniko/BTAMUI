@@ -4,7 +4,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <label><i class="fa fa-list"></i>&nbsp;Groups</label>
-                <a href="#grp_add" data-toggle="tab" id="btn_addgroup" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus"></i>&nbsp;Add Group</a>
+                <a href="#grp_prop" data-toggle="tab" id="btn_addgroup" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus"></i>&nbsp;Add Group</a>
             </div>
             <div class="panel-body container-fluid" style="height:600px; max-height:600px; overflow-y:auto;">
                 <div id="appgrouplist" class="input-sm">
@@ -88,6 +88,7 @@
                                 <div id="grp_prop_view">
                                     <!--group property view-->
                                     <group-prop></group-prop>
+                        
                                 </div>
                             </div>
                         </div>
@@ -95,7 +96,7 @@
                     <div id="tab_prop" class="tab-pane fade">
                         <div class="row">
                             <div class="col-md-12">
-                                <a href="#grp_details" data-toggle="tab" class="btn btn-default btn-sm"><i class="fa fa-caret-left"></i>&nbsp;Go Back</a>
+                                <a href="#grp_details" data-toggle="tab" class="btn btn-default btn-sm"><i class="fa fa-caret-left"></i>&nbsp;Go Back 2</a>
                             </div>
                         </div>
                         <br />
@@ -111,7 +112,7 @@
                     <div id="mod_prop" class="tab-pane fade">
                         <div class="row">
                             <div class="col-md-12">
-                                <a href="#grp_details" data-toggle="tab" class="btn btn-default btn-sm"><i class="fa fa-caret-left"></i>&nbsp;Go Back</a>
+                                <a href="#grp_details" data-toggle="tab" class="btn btn-default btn-sm"><i class="fa fa-caret-left"></i>&nbsp;Go Back3 </a>
                             </div>
                         </div>
                         <br />
@@ -142,15 +143,27 @@
                     </div>
                 </div>
             </div>
-            <div id="grp_add" class="tab-pane fade">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div id="grp_prop_add">
-                            <!--group property add-->
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
+</div> 
+
+
+<div class="modal-footer">
+    <ul class="pagination pagination-sm pull-right">
+        <li>
+            <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li>
+            <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
 </div>
