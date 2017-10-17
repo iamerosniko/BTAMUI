@@ -1,10 +1,10 @@
 <div class="tab-content">
-    <div id="mod_default" class="tab-pane fade in active">
+    <div id="usr_default" class="tab-pane fade in active">
         <div class="col-md-12">
             <!--tool bar-->
             <div class="row">
                 <div class="col-md-9">
-                    <a href="#" class="btn btn-primary btn-sm" data-toggle="tab" data-target="#mod_editor"><i class="fa fa-plus"></i>&nbsp;New Record</a>
+                    <a href="#" class="btn btn-primary btn-sm" data-toggle="tab" data-target="#usr_editor"><i class="fa fa-plus"></i>&nbsp;New Record</a>
                 </div>
                 <div class="col-md-3">
                     <input type="text" placeholder="search..." class="form-control input-sm" />
@@ -17,8 +17,11 @@
                     <table class="table table-bordered table-striped table-hover input-sm">
                         <thead>
                             <tr>
-                                <th>Module Id</th>
-                                <th>Module Name</th>
+                                <th>User Id</th>
+                                <th>User Name</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Middle Name</th>
                                 <th>Is Active</th>
                                 <th>&nbsp;</th>
                             </tr>
@@ -26,11 +29,14 @@
                         <tbody>
                             <tr>
                                 <td>1</td>
-                                <td>Reports</td>
+                                <td>bermoyj</td>
+                                <td>Joyce</td>
+                                <td>Bermoy</td>
+                                <td>L</td>
                                 <td>Yes</td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="#" class="btn btn-default btn-xs" data-toggle="tab" data-target="#tab_editor" title="Edit"><i class="fa fa-edit"></i></a>
+                                        <a href="#" class="btn btn-default btn-xs" data-toggle="tab" data-target="#usr_editor" title="Edit"><i class="fa fa-edit"></i></a>
                                         <a href="#" class="btn btn-default btn-xs" title="Delete"><i class="fa fa-trash"></i></a>
                                     </div>
                                 </td>
@@ -63,12 +69,12 @@
             </div>
         </div>
     </div>
-    <div id="mod_editor" class="tab-pane fade">
+    <div id="usr_editor" class="tab-pane fade">
         <div class="col-md-12">
             <!--return button-->
             <div class="row">
                 <div class="col-md-12">
-                    <a href="#" class="btn btn-default btn-sm" data-toggle="tab" data-target="#mod_default"><i class="fa fa-caret-left"></i>&nbsp;Go Back</a>
+                    <a href="#" class="btn btn-default btn-sm" data-toggle="tab" data-target="#usr_default"><i class="fa fa-caret-left"></i>&nbsp;Go Back</a>
                 </div>
             </div>
             <br />
@@ -76,28 +82,49 @@
             <div class="row">
                 <!--for example you are in adding mode, span.add should be displayed while span.edit will be hidden-->
                 <h4>
-                    <span class="add"><i class="fa fa-plus"></i>&nbsp;New Record</span>
-                    <span class="edit"><i class="fa fa-edit"></i>&nbsp;Edit Details</span>
+                    <span class="add" *ngIf="mode==0"><i class="fa fa-plus"></i>&nbsp;New Record</span>
+                    <span class="edit" *ngIf="mode==1"><i class="fa fa-edit"></i>&nbsp;Edit Details</span>
                 </h4>
             </div>
             <br />
             <!--fields-->
             <div class="row">
-                <label class="col-md-2 control-label input-sm">Module Id</label>
+                <label class="col-md-2 control-label">User Id</label>
                 <div class="col-md-4">
                     <input type="text" class="form-control input-sm" />
                 </div>
             </div>
             <br />
             <div class="row">
-                <label class="col-md-2 control-label input-sm">Module Name</label>
+                <label class="col-md-2 control-label">User Name</label>
                 <div class="col-md-4">
                     <input type="text" class="form-control input-sm" />
                 </div>
             </div>
             <br />
             <div class="row">
-                <label class="col-md-2 control-label input-sm">Is Active</label>
+                <label class="col-md-2 control-label">First Name</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control input-sm" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <label class="col-md-2 control-label">Middle Name</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control input-sm" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <label class="col-md-2 control-label">Last Name</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control input-sm" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <label class="col-md-2 control-label">Is Active</label>
                 <div class="col-md-4">
                     <label class="switch">
                         <input type="checkbox" />
@@ -109,6 +136,8 @@
         </div>
         <div class="save-bar">
             <!--save bar component here-->
+            <save-bar  [buttonMode]="mode" (triggerParentFunc)="saveAssociate()"></save-bar>
         </div>
     </div>
 </div>
+

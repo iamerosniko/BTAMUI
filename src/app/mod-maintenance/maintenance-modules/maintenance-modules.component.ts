@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./maintenance-modules.component.css']
 })
 export class MaintenanceModulesComponent implements OnInit {
-
+  mode=0;
   constructor() { }
 
   ngOnInit() {

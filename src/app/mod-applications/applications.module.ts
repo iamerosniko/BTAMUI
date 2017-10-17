@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ApplicationsComponent } from './applications/applications.component';
+
+import { ApplicationsComponent } from './applications.component';
 import { ApplicationListsComponent } from './application-lists/application-lists.component';
 import { ApplicationsRouting } from './applications.routing';
 

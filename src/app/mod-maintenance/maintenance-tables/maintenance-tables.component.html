@@ -1,10 +1,10 @@
 <div class="tab-content">
-    <div id="app_default" class="tab-pane fade in active">
+    <div id="tab_default" class="tab-pane fade in active">
         <div class="col-md-12">
             <!--tool bar-->
             <div class="row">
                 <div class="col-md-9">
-                    <a href="#" class="btn btn-primary btn-sm" data-toggle="tab" data-target="#app_editor"><i class="fa fa-plus"></i>&nbsp;New Record</a>
+                    <a href="#" class="btn btn-primary btn-sm" data-toggle="tab" data-target="#tab_editor"><i class="fa fa-plus"></i>&nbsp;New Record</a>
                 </div>
                 <div class="col-md-3">
                     <input type="text" placeholder="search..." class="form-control input-sm" />
@@ -17,8 +17,8 @@
                     <table class="table table-bordered table-striped table-hover input-sm">
                         <thead>
                             <tr>
-                                <th>Application Id</th>
-                                <th>Application Name</th>
+                                <th>Table Id</th>
+                                <th>Table Name</th>
                                 <th>Is Active</th>
                                 <th>&nbsp;</th>
                             </tr>
@@ -26,11 +26,11 @@
                         <tbody>
                             <tr>
                                 <td>1</td>
-                                <td>Skillset Tracker</td>
+                                <td>Departments</td>
                                 <td>Yes</td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="#" class="btn btn-default btn-xs" data-toggle="tab" data-target="#app_editor" title="Edit"><i class="fa fa-edit"></i></a>
+                                        <a href="#" class="btn btn-default btn-xs" data-toggle="tab" data-target="#tab_editor" title="Edit"><i class="fa fa-edit"></i></a>
                                         <a href="#" class="btn btn-default btn-xs" title="Delete"><i class="fa fa-trash"></i></a>
                                     </div>
                                 </td>
@@ -63,12 +63,12 @@
             </div>
         </div>
     </div>
-    <div id="app_editor" class="tab-pane fade">
+    <div id="tab_editor" class="tab-pane fade">
         <div class="col-md-12">
             <!--return button-->
             <div class="row">
                 <div class="col-md-12">
-                    <a href="#" class="btn btn-default btn-sm" data-toggle="tab" data-target="#app_default"><i class="fa fa-caret-left"></i>&nbsp;Go Back</a>
+                    <a href="#" class="btn btn-default btn-sm" data-toggle="tab" data-target="#tab_default"><i class="fa fa-caret-left"></i>&nbsp;Go Back</a>
                 </div>
             </div>
             <br />
@@ -76,21 +76,21 @@
             <div class="row">
                 <!--for example you are in adding mode, span.add should be displayed while span.edit will be hidden-->
                 <h4>
-                    <span class="add"><i class="fa fa-plus"></i>&nbsp;New Record</span>
-                    <span class="edit"><i class="fa fa-edit"></i>&nbsp;Edit Details</span>
+                    <span class="add" *ngIf="mode==0"><i class="fa fa-plus"></i>&nbsp;New Record</span>
+                    <span class="edit" *ngIf="mode==1"><i class="fa fa-edit"></i>&nbsp;Edit Details</span>
                 </h4>
             </div>
             <br />
             <!--fields-->
             <div class="row">
-                <label class="col-md-2 control-label input-sm">Application Id</label>
+                <label class="col-md-2 control-label input-sm">Table Id</label>
                 <div class="col-md-4">
                     <input type="text" class="form-control input-sm" />
                 </div>
             </div>
             <br />
             <div class="row">
-                <label class="col-md-2 control-label input-sm">Application Name</label>
+                <label class="col-md-2 control-label input-sm">Table Name</label>
                 <div class="col-md-4">
                     <input type="text" class="form-control input-sm" />
                 </div>
@@ -109,6 +109,7 @@
         </div>
         <div class="save-bar">
             <!--save bar component here-->
+            <save-bar  [buttonMode]="mode" (triggerParentFunc)="saveAssociate()"></save-bar>
         </div>
     </div>
 </div>
