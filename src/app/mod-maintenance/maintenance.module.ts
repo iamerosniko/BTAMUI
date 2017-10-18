@@ -9,10 +9,14 @@ import { MaintenanceModulesComponent } from './maintenance-modules/maintenance-m
 import { MaintenanceUsersComponent } from './maintenance-users/maintenance-users.component';
 
 import { ModCommonModule } from '../mod-common/mod-common.module';
+import { UserService } from '../com_services/user.service';
+import { ApiService } from '../com_services/api-service';
+import { HttpModule } from '@angular/http';
 @NgModule({
   imports: [
-    CommonModule,ModCommonModule,MaintenanceRouting
+    CommonModule,ModCommonModule,HttpModule,MaintenanceRouting
   ],
+  providers:[ApiService,UserService],
   declarations: [MaintenanceComponent, MaintenanceAppComponent, MaintenanceTablesComponent, MaintenanceGroupsComponent, MaintenanceModulesComponent, MaintenanceUsersComponent]
 })
 export class MaintenanceModule { }

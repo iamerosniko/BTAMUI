@@ -27,13 +27,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>bermoyj</td>
-                                <td>Joyce</td>
-                                <td>Bermoy</td>
-                                <td>L</td>
-                                <td>Yes</td>
+                            <tr *ngFor="let u of users">
+                                <td>{{u.UserID}}</td>
+                                <td>{{u.UserName}}</td>
+                                <td>{{u.UserFirstName}}</td>
+                                <td>{{u.UserLastName}}</td>
+                                <td>{{u.UserMiddleName}}</td>
+                                <td>{{u.IsActive}}</td>
                                 <td>
                                     <div class="btn-group">
                                         <a href="#" class="btn btn-default btn-xs" data-toggle="tab" data-target="#usr_editor" title="Edit"><i class="fa fa-edit"></i></a>

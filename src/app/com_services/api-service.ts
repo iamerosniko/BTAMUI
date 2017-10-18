@@ -13,7 +13,6 @@ export class ApiService {
     }
     
     public getAll(controller:string): Promise<any[]> {  
-        console.log(controller);
         this.apiUrl=AppSettings.GETAPIURL(controller);
         return this.http
             .get(this.apiUrl, {headers: this.headers})
