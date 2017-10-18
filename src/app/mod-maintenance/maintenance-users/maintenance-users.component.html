@@ -1,10 +1,10 @@
 <div class="tab-content">
     <div id="usr_default" class="tab-pane fade in active">
-        <div class="col-md-12">
+        <div class="col-md-12"> 
             <!--tool bar-->
             <div class="row">
                 <div class="col-md-9">
-                    <a href="#" class="btn btn-primary btn-sm" data-toggle="tab" data-target="#usr_editor"><i class="fa fa-plus"></i>&nbsp;New Record</a>
+                    <a (click)="cleaning()" class="btn btn-primary btn-sm" data-toggle="tab" data-target="#usr_editor"><i class="fa fa-plus"></i>&nbsp;New Record</a>
                 </div>
                 <div class="col-md-3">
                     <input type="text" placeholder="search..." class="form-control input-sm" />
@@ -27,7 +27,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let u of users">
+                            <tr *ngFor="let u of users  | paginate: { itemsPerPage: 5, currentPage: p }">
                                 <td>{{u.UserID}}</td>
                                 <td>{{u.UserName}}</td>
                                 <td>{{u.UserFirstName}}</td>
@@ -36,8 +36,8 @@
                                 <td>{{u.IsActive}}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="#" class="btn btn-default btn-xs" data-toggle="tab" data-target="#usr_editor" title="Edit"><i class="fa fa-edit"></i></a>
-                                        <a href="#" class="btn btn-default btn-xs" title="Delete"><i class="fa fa-trash"></i></a>
+                                        <a (click)="edit(u)" class="btn btn-default btn-xs" data-toggle="tab" data-target="#usr_editor" title="Edit"><i class="fa fa-edit"></i></a>
+                                        <a class="btn btn-default btn-xs" title="Delete"><i class="fa fa-trash"></i></a>
                                     </div>
                                 </td>
                             </tr>
@@ -48,23 +48,7 @@
             <!--pagination-->
             <div class="row">
                 <div class="pull-right">
-                    <ul class="pagination pagination-sm">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>    
                 </div>
             </div>
         </div>
@@ -74,7 +58,7 @@
             <!--return button-->
             <div class="row">
                 <div class="col-md-12">
-                    <a href="#" class="btn btn-default btn-sm" data-toggle="tab" data-target="#usr_default"><i class="fa fa-caret-left"></i>&nbsp;Go Back</a>
+                    <a id="goBack" class="btn btn-default btn-sm" data-toggle="tab" data-target="#usr_default"><i class="fa fa-caret-left"></i>&nbsp;Go Back</a>
                 </div>
             </div>
             <br />
@@ -91,35 +75,35 @@
             <div class="row">
                 <label class="col-md-2 control-label">User Id</label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control input-sm" />
+                    <input type="text" [(ngModel)]="user.UserID" class="form-control input-sm" />
                 </div>
             </div>
             <br />
             <div class="row">
                 <label class="col-md-2 control-label">User Name</label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control input-sm" />
+                    <input type="text" [(ngModel)]="user.UserName" class="form-control input-sm" />
                 </div>
             </div>
             <br />
             <div class="row">
                 <label class="col-md-2 control-label">First Name</label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control input-sm" />
+                    <input type="text" [(ngModel)]="user.UserFirstName" class="form-control input-sm" />
                 </div>
             </div>
             <br />
             <div class="row">
                 <label class="col-md-2 control-label">Middle Name</label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control input-sm" />
+                    <input type="text" [(ngModel)]="user.UserMiddleName" class="form-control input-sm" />
                 </div>
             </div>
             <br />
             <div class="row">
                 <label class="col-md-2 control-label">Last Name</label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control input-sm" />
+                    <input type="text" [(ngModel)]="user.UserLastName" class="form-control input-sm" />
                 </div>
             </div>
             <br />
@@ -127,7 +111,7 @@
                 <label class="col-md-2 control-label">Is Active</label>
                 <div class="col-md-4">
                     <label class="switch">
-                        <input type="checkbox" />
+                        <input [(ngModel)]="user.IsActive" type="checkbox" />
                         <div class="slider round"></div>
                     </label>
                     <br />
@@ -136,7 +120,7 @@
         </div>
         <div class="save-bar">
             <!--save bar component here-->
-            <save-bar  [buttonMode]="mode" (triggerParentFunc)="saveAssociate()"></save-bar>
+            <save-bar  [buttonMode]="mode" (triggerParentFunc)="saveChanges()"></save-bar>
         </div>
     </div>
 </div>

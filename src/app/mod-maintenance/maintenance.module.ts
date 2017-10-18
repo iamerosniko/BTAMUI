@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { MaintenanceComponent } from './maintenance.component';
 import { MaintenanceRouting } from './maintenance.routing';
 import { MaintenanceAppComponent } from './maintenance-app/maintenance-app.component';
@@ -12,9 +13,10 @@ import { ModCommonModule } from '../mod-common/mod-common.module';
 import { UserService } from '../com_services/user.service';
 import { ApiService } from '../com_services/api-service';
 import { HttpModule } from '@angular/http';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   imports: [
-    CommonModule,ModCommonModule,HttpModule,MaintenanceRouting
+    CommonModule,ModCommonModule,FormsModule,HttpModule,NgxPaginationModule,MaintenanceRouting
   ],
   providers:[ApiService,UserService],
   declarations: [MaintenanceComponent, MaintenanceAppComponent, MaintenanceTablesComponent, MaintenanceGroupsComponent, MaintenanceModulesComponent, MaintenanceUsersComponent]

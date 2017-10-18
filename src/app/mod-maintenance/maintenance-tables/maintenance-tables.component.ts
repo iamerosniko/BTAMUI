@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./maintenance-tables.component.css']
 })
 export class MaintenanceTablesComponent implements OnInit {
-  mode=0;
+  mode:number=0;
+  p:number=1;
   constructor() { }
 
   ngOnInit() {
