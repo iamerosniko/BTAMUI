@@ -1,12 +1,12 @@
 <nav class="navbar navbar-fixed-bottom save-navbar">
   <div class="container-fluid">
       <form class="navbar-form navbar-right">
-          <a *ngIf="buttonMode==0" (click)="buttonClicked()" class="btn btn-primary btn-sm pull-right">
+          <button *ngIf="buttonMode==0" [disabled]="!isValid" (click)="buttonClicked()" class="btn btn-primary btn-sm pull-right">
               <i class="fa fa-save"></i>&nbsp;Save <!--Save-->
-          </a>
-          <a *ngIf="buttonMode==1" (click)="buttonClicked()" class="btn btn-primary btn-sm pull-right">
+          </button>
+          <button *ngIf="buttonMode==1" [disabled]="!isValid" (click)="buttonClicked()" class="btn btn-primary btn-sm pull-right">
               <i class="fa fa-save"></i>&nbsp;Update <!--Save-->
-          </a>
+          </button>
       </form>
   </div>
 </nav>
