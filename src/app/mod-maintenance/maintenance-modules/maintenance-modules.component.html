@@ -4,7 +4,7 @@
             <!--tool bar-->
             <div class="row">
                 <div class="col-md-9">
-                    <a href="#" class="btn btn-primary btn-sm" data-toggle="tab" data-target="#mod_editor"><i class="fa fa-plus"></i>&nbsp;New Record</a>
+                    <a (click)="cleaning()" class="btn btn-primary btn-sm" data-toggle="tab" data-target="#mod_editor"><i class="fa fa-plus"></i>&nbsp;New Record</a>
                 </div>
                 <div class="col-md-3">
                     <input type="text" placeholder="search..." class="form-control input-sm" />
@@ -24,14 +24,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Reports</td>
-                                <td>Yes</td>
+                            <tr *ngFor="let u of modules | paginate: { itemsPerPage: 5, currentPage: p }">
+                                <td>{{u.ModuleID}}</td>
+                                <td>{{u.ModuleName}}</td>
+                                <td>{{u.IsActive}}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="#" class="btn btn-default btn-xs" data-toggle="tab" data-target="#tab_editor" title="Edit"><i class="fa fa-edit"></i></a>
-                                        <a href="#" class="btn btn-default btn-xs" title="Delete"><i class="fa fa-trash"></i></a>
+                                        <a (click)="edit(u)" class="btn btn-default btn-xs" data-toggle="tab" data-target="#mod_editor" title="Edit"><i class="fa fa-edit"></i></a>
+                                        <a (click)="changeStatus(u)" class="btn btn-default btn-xs" title="Delete"><i class="fa fa-trash"></i></a>
                                     </div>
                                 </td>
                             </tr>
@@ -42,23 +42,7 @@
             <!--pagination-->
             <div class="row">
                 <div class="pull-right">
-                    <ul class="pagination pagination-sm">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls> 
                 </div>
             </div>
         </div>
@@ -68,7 +52,7 @@
             <!--return button-->
             <div class="row">
                 <div class="col-md-12">
-                    <a id="goBack" class="btn btn-default btn-sm" data-toggle="tab" data-target="#usr_default"><i class="fa fa-caret-left"></i>&nbsp;Go Back</a>
+                    <a id="goBack" (click)="cleaning()"  class="btn btn-default btn-sm" data-toggle="tab" data-target="#mod_default"><i class="fa fa-caret-left"></i>&nbsp;Go Back</a>
                 </div>
             </div>
             <br />
@@ -77,39 +61,40 @@
                 <!--for example you are in adding mode, span.add should be displayed while span.edit will be hidden-->
                 <h4>
                     <span class="add" *ngIf="mode==0"><i class="fa fa-plus"></i>&nbsp;New Record</span>
-                    <span class="edit" *ngIf="mode==1"><i class="fa fa-edit"></i>&nbsp;Edit Details</span>>
+                    <span class="edit" *ngIf="mode==1"><i class="fa fa-edit"></i>&nbsp;Edit Details</span>
                 </h4>
             </div>
             <br />
             <!--fields-->
-            <div class="row">
-                <label class="col-md-2 control-label input-sm">Module Id</label>
-                <div class="col-md-4">
-                    <input type="text" class="form-control input-sm" />
+            <form  [formGroup]="myForm" class="form-group" novalidate>
+                <div class="row">
+                    <label class="col-md-2 control-label input-sm">Module Id</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control input-sm"  formControlName="ModuleID" />
+                    </div>
                 </div>
-            </div>
-            <br />
-            <div class="row">
-                <label class="col-md-2 control-label input-sm">Module Name</label>
-                <div class="col-md-4">
-                    <input type="text" class="form-control input-sm" />
+                <br />
+                <div class="row">
+                    <label class="col-md-2 control-label input-sm">Module Name</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control input-sm"  formControlName="ModuleName" />
+                    </div>
                 </div>
-            </div>
-            <br />
-            <div class="row">
-                <label class="col-md-2 control-label input-sm">Is Active</label>
-                <div class="col-md-4">
-                    <label class="switch">
-                        <input type="checkbox" />
-                        <div class="slider round"></div>
-                    </label>
-                    <br />
+                <br />
+                <div class="row">
+                    <label class="col-md-2 control-label input-sm">Is Active</label>
+                    <div class="col-md-4">
+                        <label class="switch">
+                            <input type="checkbox"  formControlName="IsActive" />
+                            <div class="slider round"></div>
+                        </label>
+                        <br />
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
         <div class="save-bar">
-            
-            <save-bar  [buttonMode]="mode" (triggerParentFunc)="saveAssociate()"></save-bar>
+            <save-bar [isValid]="myForm.valid" [buttonMode]="mode" (triggerParentFunc)="saveChanges()"></save-bar>
             <!--save bar component here-->
         </div>
     </div>

@@ -13,6 +13,8 @@ import { ModCommonModule } from '../mod-common/mod-common.module';
 import { UserService } from '../com_services/user.service';
 import { TableService } from '../com_services/table.service';
 import { GroupService } from '../com_services/group.service';
+import { ModuleService } from '../com_services/module.service';
+import { ApplicationService } from '../com_services/application.service';
 import { ApiService } from '../com_services/api-service';
 import { HttpModule } from '@angular/http';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -20,7 +22,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
   imports: [
     CommonModule,ModCommonModule,ReactiveFormsModule,HttpModule,NgxPaginationModule,MaintenanceRouting
   ],
-  providers:[ApiService,UserService,TableService,GroupService],
+  providers:[ApiService,UserService,TableService,GroupService,
+    ModuleService,ApplicationService],
   declarations: [MaintenanceComponent, MaintenanceAppComponent, MaintenanceTablesComponent, MaintenanceGroupsComponent, MaintenanceModulesComponent, MaintenanceUsersComponent]
 })
 export class MaintenanceModule { }
