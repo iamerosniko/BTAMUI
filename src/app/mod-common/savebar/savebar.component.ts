@@ -5,6 +5,7 @@ import { Component,Input,Output,EventEmitter } from '@angular/core';
 })
 export class SaveBarComponent {
   @Input() buttonMode:number;
+  @Input() isValid:boolean;
   @Output() triggerParentFunc = new EventEmitter();
 
   async buttonClicked(){
