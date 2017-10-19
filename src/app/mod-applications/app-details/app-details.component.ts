@@ -18,7 +18,9 @@ export class AppDetailsComponent implements OnInit {
   tables:Tables[]=[];
   users:Users[]=[];
 
-  selectedGroup:Groups={};
+  selectedGroup:Groups={GroupID:0};
+
+  isAdd:boolean=true;
   constructor(public route: ActivatedRoute,
     private router: Router,
     private appSvc : ApplicationService,
@@ -54,5 +56,4 @@ export class AppDetailsComponent implements OnInit {
       this.router.navigate([ '../' ], { relativeTo: this.route });
     }
   }
-
 }

@@ -14,7 +14,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <label><i class="fa fa-list"></i>&nbsp;Groups</label>
-                    <a href="#grp_prop" data-toggle="tab" id="btn_addgroup" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus"></i>&nbsp;Add Group</a>
+                    <a (click)="isAdd=true" href="#grp_prop" data-toggle="tab" id="btn_addgroup" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus"></i>&nbsp;Add Group</a>
                 </div>
                 <div class="panel-body container-fluid" style="height:600px; max-height:600px; overflow-y:auto;">
                     <div id="appgrouplist" class="input-sm" *ngFor="let gl of groups">
@@ -31,7 +31,7 @@
                         <div class="col-md-12">
                             <div class="panel">
                                 <div class="panel-body">
-                                    <a href="#grp_prop" data-toggle="tab" class="close"><i class="fa fa-cog"></i></a>
+                                    <a (click)="isAdd=false" href="#grp_prop" data-toggle="tab" class="close"><i class="fa fa-cog"></i></a>
                                     <h4><i class="fa fa-desktop"></i>&nbsp;{{application.ApplicationName}}</h4>
                                     <h5>{{selectedGroup.GroupName}}</h5>
                                 </div>
@@ -46,7 +46,7 @@
                                     <div class="panel panel-warning">
                                         <div class="panel-heading">
                                             <label><i class="fa fa-list"></i>&nbsp;Tables</label>
-                                            <a href="#tab_prop" data-toggle="tab" class="btn btn-warning btn-sm pull-right" id="btn_addtable"><i class="fa fa-plus"></i>&nbsp;Add Table</a>
+                                            <button (click)="isAdd=true" [disabled]="selectedGroup.GroupID==0" type="button" href="#tab_prop" data-toggle="tab" class="btn btn-warning btn-sm pull-right" id="btn_addtable"><i class="fa fa-plus"></i>&nbsp;Add Table</button>
                                         </div>
                                         <div class="panel-body" style="height:480px; max-height:480px; overflow-y:auto;">
                                             <div id="apptablelist" class="input-sm">
@@ -60,7 +60,7 @@
                                     <div class="panel panel-danger">
                                         <div class="panel-heading">
                                             <label><i class="fa fa-list"></i>&nbsp;Modules</label>
-                                            <a href="#mod_prop" data-toggle="tab" id="btn_adduser" class="btn btn-danger btn-sm pull-right"><i class="fa fa-plus"></i>&nbsp;Add Module</a>
+                                            <button (click)="isAdd=true" [disabled]="selectedGroup.GroupID==0" type="button" href="#mod_prop" data-toggle="tab" id="btn_adduser" class="btn btn-danger btn-sm pull-right"><i class="fa fa-plus"></i>&nbsp;Add Module</button>
                                         </div>
                                         <div class="panel-body" style="height:480px; max-height:480px; overflow-y:auto;">
                                             <div id="appmodulelist" class="input-sm">
@@ -74,7 +74,7 @@
                                     <div class="panel panel-success">
                                         <div class="panel-heading">
                                             <label><i class="fa fa-list"></i>&nbsp;Users</label>
-                                            <a href="#usr_prop" data-toggle="tab" id="btn_adduser" class="btn btn-success btn-sm pull-right"><i class="fa fa-plus"></i>&nbsp;Add User</a>
+                                            <button (click)="isAdd=true" [disabled]="selectedGroup.GroupID==0" type="button" href="#usr_prop" data-toggle="tab" id="btn_adduser" class="btn btn-success btn-sm pull-right"><i class="fa fa-plus"></i>&nbsp;Add User</button>
                                         </div>
                                         <div class="panel-body" style="height:480px; max-height:480px; overflow-y:auto;">
                                             <div id="appuserlist" class="input-sm">
@@ -97,8 +97,7 @@
                                 <div class="col-md-6">
                                     <div id="grp_prop_view">
                                         <!--group property view-->
-                                        <group-prop></group-prop>
-                            
+                                        <group-prop [isAdd]="isAdd"></group-prop>
                                     </div>
                                 </div>
                             </div>
