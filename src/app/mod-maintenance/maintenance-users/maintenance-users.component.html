@@ -58,7 +58,7 @@
             <!--return button-->
             <div class="row">
                 <div class="col-md-12">
-                    <a id="goBack" (click)="cleaning()" class="btn btn-default btn-sm" data-toggle="tab" data-target="#usr_default"><i class="fa fa-caret-left"></i>&nbsp;Go Back</a>
+                    <a id="goBack" class="btn btn-default btn-sm" data-toggle="tab" data-target="#usr_default"><i class="fa fa-caret-left"></i>&nbsp;Go Back</a>
                 </div>
             </div>
             <br />
@@ -72,57 +72,55 @@
             </div>
             <br />
             <!--fields-->
-            <form [formGroup]="myForm" class="form-group" novalidate>
-                <div class="row">
-                    <label class="col-md-2 control-label">User Id</label>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control input-sm"  formControlName="UserID" />
-                    </div>
+            <div class="row">
+                <label class="col-md-2 control-label">User Id</label>
+                <div class="col-md-4">
+                    <input type="text" [(ngModel)]="user.UserID" class="form-control input-sm" />
                 </div>
-                <br />
-                <div class="row">
-                    <label class="col-md-2 control-label">User Name</label>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control input-sm" formControlName="UserName"/>
-                    </div>
+            </div>
+            <br />
+            <div class="row">
+                <label class="col-md-2 control-label">User Name</label>
+                <div class="col-md-4">
+                    <input type="text" [(ngModel)]="user.UserName" class="form-control input-sm" />
                 </div>
-                <br />
-                <div class="row">
-                    <label class="col-md-2 control-label">First Name</label>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control input-sm" formControlName="UserFirstName"  />
-                    </div>
+            </div>
+            <br />
+            <div class="row">
+                <label class="col-md-2 control-label">First Name</label>
+                <div class="col-md-4">
+                    <input type="text" [(ngModel)]="user.UserFirstName" class="form-control input-sm" />
                 </div>
-                <br />
-                <div class="row">
-                    <label class="col-md-2 control-label">Middle Name</label>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control input-sm" formControlName="UserMiddleName"/>
-                    </div>
+            </div>
+            <br />
+            <div class="row">
+                <label class="col-md-2 control-label">Middle Name</label>
+                <div class="col-md-4">
+                    <input type="text" [(ngModel)]="user.UserMiddleName" class="form-control input-sm" />
                 </div>
-                <br />
-                <div class="row">
-                    <label class="col-md-2 control-label">Last Name</label>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control input-sm" formControlName="UserLastName"  />
-                    </div>
+            </div>
+            <br />
+            <div class="row">
+                <label class="col-md-2 control-label">Last Name</label>
+                <div class="col-md-4">
+                    <input type="text" [(ngModel)]="user.UserLastName" class="form-control input-sm" />
                 </div>
-                <br />
-                <div class="row">
-                    <label class="col-md-2 control-label">Is Active</label>
-                    <div class="col-md-4">
-                        <label class="switch">
-                            <input formControlName="IsActive" type="checkbox" />
-                            <div class="slider round"></div>
-                        </label>
-                        <br />
-                    </div>
-                </div>    
-            </form>    
+            </div>
+            <br />
+            <div class="row">
+                <label class="col-md-2 control-label">Is Active</label>
+                <div class="col-md-4">
+                    <label class="switch">
+                        <input [(ngModel)]="user.IsActive" type="checkbox" />
+                        <div class="slider round"></div>
+                    </label>
+                    <br />
+                </div>
+            </div>
         </div>
         <div class="save-bar">
             <!--save bar component here-->
-            <save-bar [isValid]="myForm.valid" [buttonMode]="mode" (triggerParentFunc)="saveChanges()"></save-bar>
+            <save-bar  [buttonMode]="mode" (triggerParentFunc)="saveChanges()"></save-bar>
         </div>
     </div>
 </div>
