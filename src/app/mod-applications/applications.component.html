@@ -12,7 +12,7 @@
         <div class="col-md-12 input-sm">
             <div id="applist" *ngFor="let u of applications | paginate: { itemsPerPage: 18, currentPage: p }">
               <!--app list component here-->
-              <application-lists [app]="u"></application-lists>
+              <application-lists [app]="u" ></application-lists>
               
             </div>
             <nav class="navbar navbar-fixed-bottom" >
@@ -22,17 +22,5 @@
             </nav>
         </div>
        
-    </div>
-    <div id="app" class="tab-pane fade">
-        <div class="col-md-12">
-            <a href="#" class="btn btn-default btn-sm" data-toggle="tab" data-target="#main"><i class="fa fa-caret-left"></i>&nbsp;Go Back to Application List</a>
-            <br />
-        </div>
-        <div class="col-md-12">
-            <div id="appdetails">
-                <!--app details component here-->
-                <app-details></app-details>
-            </div>
-        </div>
     </div>
 </div>

@@ -25,7 +25,7 @@ export class ApiService {
         this.apiUrl=AppSettings.GETAPIURL(controller);
         const url = `${this.apiUrl}/${id}`;
         return this.http
-            .get(this.apiUrl, {headers: this.headers})
+            .get(url, {headers: this.headers})
             .toPromise()
             .then(response => response.json())
             .catch(AppSettings.handleError);

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApplicationService,Applications } from '../com_services/application.service';
+
+import { Router,ActivatedRoute }  from '@angular/router';
 @Component({
   selector: 'app-applications',
   templateUrl: './applications.component.html',
@@ -8,8 +10,8 @@ import { ApplicationService,Applications } from '../com_services/application.ser
 export class ApplicationsComponent implements OnInit {
   p:number=1;
   applications:Applications[]=[];
-  
-  constructor(private svc:ApplicationService,) { }
+  ID:number=0;
+  constructor(private svc:ApplicationService) { }
 
   ngOnInit() {
     this.getDependencies();

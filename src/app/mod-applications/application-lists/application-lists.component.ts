@@ -1,5 +1,6 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 import { Applications } from '../../com_services/application.service';
+import { Router,ActivatedRoute }  from '@angular/router';
 @Component({
   selector: 'application-lists',
   templateUrl: './application-lists.component.html',
@@ -11,5 +12,6 @@ export class ApplicationListsComponent implements OnInit {
 
   ngOnInit() {
   }
+
 
 }

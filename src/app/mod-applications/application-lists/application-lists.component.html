@@ -1,3 +1,3 @@
 <div class="col-md-2">
-  <a href="#app" data-toggle="tab" class="thumbnail app"><i class="fa fa-desktop"></i>&nbsp;{{app.ApplicationName}}</a>
+  <a href="#app" [routerLink]="['/Applications', app.ApplicationID ]" class="thumbnail app"><i class="fa fa-desktop"></i>&nbsp;{{app.ApplicationName}}</a>
 </div>
