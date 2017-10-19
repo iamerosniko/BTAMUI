@@ -10,42 +10,14 @@
             </div>
         </div>
         <div class="col-md-12 input-sm">
-            <div id="applist">
+            <div id="applist" *ngFor="let u of applications | paginate: { itemsPerPage: 18, currentPage: p }">
               <!--app list component here-->
-              <application-lists></application-lists>
-              <application-lists></application-lists>
-              <application-lists></application-lists>
-              <application-lists></application-lists>
-              <application-lists></application-lists>
-              <application-lists></application-lists>
-
-              <application-lists></application-lists>
-              <application-lists></application-lists>
-              <application-lists></application-lists>
-              <application-lists></application-lists>
-              <application-lists></application-lists>
-              <application-lists></application-lists>
+              <application-lists [app]="u"></application-lists>
               
             </div>
-            <nav class="navbar navbar-fixed-bottom save-navbar">
-                <div class="container-fluid">
-                    <ul class="pagination pagination-sm pull-right">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
+            <nav class="navbar navbar-fixed-bottom" >
+                <div class="pull-right">
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls> 
                 </div>
             </nav>
         </div>

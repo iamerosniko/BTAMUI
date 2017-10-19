@@ -14,10 +14,15 @@ import { GroupPropComponent } from './app-details/properties/group-prop/group-pr
 import { ModulePropComponent } from './app-details/properties/module-prop/module-prop.component';
 import { UserPropComponent } from './app-details/properties/user-prop/user-prop.component';
 
+
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ApplicationService } from '../com_services/application.service';
+
 @NgModule({
   imports: [
-    CommonModule,ApplicationsRouting
+    CommonModule,NgxPaginationModule,ApplicationsRouting
   ],
+  providers:[ApplicationService],
   declarations: [ApplicationsComponent, 
     ApplicationListsComponent, AppDetailsComponent, 
     GroupListComponent, UserListComponent, TableListComponent, TablePropComponent, GroupPropComponent, ModulePropComponent, UserPropComponent, ModuleListComponent,]
