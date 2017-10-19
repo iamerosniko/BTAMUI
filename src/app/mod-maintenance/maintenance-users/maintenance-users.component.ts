@@ -56,6 +56,13 @@ export class MaintenanceUsersComponent implements OnInit {
     this.mode=await 0;
     this.ngOnChanges();
   }
+
+  async changeStatus(selectedUser:Users){
+    selectedUser.IsActive=await !selectedUser.IsActive;
+    await this.edit(selectedUser);
+    await this.saveChanges();
+  }
+
   async edit(selectedUser:Users){
     this.mode=1;
     this.user=selectedUser;
