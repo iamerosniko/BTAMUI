@@ -16,13 +16,20 @@ import { UserPropComponent } from './app-details/properties/user-prop/user-prop.
 
 
 import { NgxPaginationModule } from 'ngx-pagination';
+//main services
 import { ApplicationService } from '../com_services/application.service';
-
+import { UserService } from '../com_services/user.service';
+import { TableService } from '../com_services/table.service';
+import { GroupService } from '../com_services/group.service';
+import { ModuleService } from '../com_services/module.service';
+//transactional services
+import { ApplicationGroupService } from '../com_services/app-group.service';
 @NgModule({
   imports: [
     CommonModule,NgxPaginationModule,ApplicationsRouting
   ],
-  providers:[ApplicationService],
+  providers:[ApplicationService,UserService,TableService,GroupService,ModuleService,
+    ApplicationGroupService],
   declarations: [ApplicationsComponent, 
     ApplicationListsComponent, AppDetailsComponent, 
     GroupListComponent, UserListComponent, TableListComponent, TablePropComponent, GroupPropComponent, ModulePropComponent, UserPropComponent, ModuleListComponent,]

@@ -17,9 +17,9 @@
                     <a href="#grp_prop" data-toggle="tab" id="btn_addgroup" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus"></i>&nbsp;Add Group</a>
                 </div>
                 <div class="panel-body container-fluid" style="height:600px; max-height:600px; overflow-y:auto;">
-                    <div id="appgrouplist" class="input-sm">
+                    <div id="appgrouplist" class="input-sm" *ngFor="let gl of groups">
                         <!--app group list component here-->
-                        <group-list></group-list>
+                        <group-list [group]="gl"></group-list>
                     </div>
                 </div>
             </div>
@@ -32,8 +32,7 @@
                             <div class="panel">
                                 <div class="panel-body">
                                     <a href="#grp_prop" data-toggle="tab" class="close"><i class="fa fa-cog"></i></a>
-                                    <h4><i class="fa fa-desktop"></i>&nbsp;AppName</h4>
-                                    <h5>GroupName</h5>
+                                    <h4><i class="fa fa-desktop"></i>&nbsp;{{application.ApplicationName}}</h4>
                                 </div>
                             </div>
                         </div>
