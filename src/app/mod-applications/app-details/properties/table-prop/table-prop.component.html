@@ -1,9 +1,9 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <!--if add group-->
-        <label><i class="fa fa-table"></i>&nbsp;Add Table</label>
+        <label *ngIf="isAdd"><i class="fa fa-table"></i>&nbsp;Add Table</label>
         <!--if group property-->
-        <label><i class="fa fa-cogs"></i>&nbsp;Table Property</label>
+        <label *ngIf="!isAdd"><i class="fa fa-cogs"></i>&nbsp;Table Property</label>
     </div>
     <div class="panel-body">
         <div class="col-md-12">
@@ -35,8 +35,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="btn-group pull-right">
-                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-floppy-o"></i>&nbsp;Save</a>
-                    <a href="#" class="btn btn-danger btn-sm" hidden><i class="fa fa-remove"></i>&nbsp;Remove</a>
+                    <a href="#" *ngIf="isAdd" class="btn btn-primary btn-sm"><i class="fa fa-floppy-o"></i>&nbsp;Save</a>
+                    <a href="#" *ngIf="!isAdd" class="btn btn-danger btn-sm" hidden><i class="fa fa-remove"></i>&nbsp;Remove</a>
                 </div>
             </div>
         </div>
@@ -61,28 +61,15 @@
                         <tr><th>Table ID</th><th>Table Name</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>1</td><td>Test Table</td></tr>
+                        <tr *ngFor="let u of tables | paginate: { itemsPerPage: 5, currentPage: p }">
+                            <td>{{u.TableID}}</td>
+                            <td>{{u.TableName}}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
             <div class="modal-footer">
-                <ul class="pagination pagination-sm pull-right">
-                    <li>
-                        <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
+                <pagination-controls (pageChange)="p = $event"></pagination-controls> 
             </div>
         </div>
     </div>

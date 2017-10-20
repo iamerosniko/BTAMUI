@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
+import { Users,UserService } from '../../../../com_services/user.service';
 
 @Component({
   selector: 'user-prop',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-prop.component.css']
 })
 export class UserPropComponent implements OnInit {
-
-  constructor() { }
+  @Input() isAdd:boolean;
+  users:Users[]=[];
+  p:number=1;
+  constructor(private svc:UserService) { }
 
   ngOnInit() {
+    this.getDependencies();
+  }
+
+  async getDependencies(){
+    this.users=await this.svc.getAll();
+    this.users=this.users.filter(x=>x.IsActive==true);
   }
 
 }
