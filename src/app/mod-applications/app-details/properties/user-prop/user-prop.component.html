@@ -49,7 +49,7 @@
                         <tr><th>User ID</th><th>User Name</th><th>Last Name</th><th>First Name</th></tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let u of users  | paginate: { itemsPerPage: 5, currentPage: p }">
+                        <tr *ngFor="let u of users  | paginate: {id: 'p_user', itemsPerPage: 5, currentPage: p }">
                             <td>{{u.UserID}}</td>
                             <td>{{u.UserName}}</td>
                             <td>{{u.UserFirstName}}</td>
@@ -59,7 +59,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <pagination-controls (pageChange)="p = $event"></pagination-controls> 
+                <pagination-controls id="p_user" (pageChange)="p = $event"></pagination-controls> 
             </div>
         </div>
     </div>

@@ -61,7 +61,7 @@
                         <tr><th>Table ID</th><th>Table Name</th></tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let u of tables | paginate: { itemsPerPage: 5, currentPage: p }">
+                        <tr *ngFor="let u of tables | paginate: { id:'p_table', itemsPerPage: 5, currentPage: t }">
                             <td>{{u.TableID}}</td>
                             <td>{{u.TableName}}</td>
                         </tr>
@@ -69,7 +69,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <pagination-controls (pageChange)="p = $event"></pagination-controls> 
+                <pagination-controls id="p_table" (pageChange)="p = $event"></pagination-controls> 
             </div>
         </div>
     </div>

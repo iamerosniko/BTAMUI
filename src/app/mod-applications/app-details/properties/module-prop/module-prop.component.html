@@ -48,7 +48,7 @@
                         <tr><th>Module ID</th><th>Module Name</th></tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let u of modules | paginate: { itemsPerPage: 5, currentPage: p }">
+                        <tr *ngFor="let u of modules | paginate: { id:'p_module', itemsPerPage: 5, currentPage: p }">
                             <td>{{u.ModuleID}}</td>
                             <td>{{u.ModuleName}}</td>
                         </tr>
@@ -56,7 +56,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <pagination-controls (pageChange)="p = $event"></pagination-controls> 
+                <pagination-controls id="p_module" (pageChange)="p = $event"></pagination-controls> 
             </div>
         </div>
     </div>

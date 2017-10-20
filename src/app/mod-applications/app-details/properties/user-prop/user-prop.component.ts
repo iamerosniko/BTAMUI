@@ -9,7 +9,7 @@ import { Users,UserService } from '../../../../com_services/user.service';
 export class UserPropComponent implements OnInit {
   @Input() isAdd:boolean;
   users:Users[]=[];
-  p:number=1;
+  u:number=1;
   constructor(private svc:UserService) { }
 
   ngOnInit() {

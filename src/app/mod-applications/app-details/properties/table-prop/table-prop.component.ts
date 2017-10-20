@@ -9,7 +9,7 @@ import { Tables,TableService } from '../../../../com_services/table.service';
 export class TablePropComponent implements OnInit {
   @Input() isAdd:boolean;
   tables:Tables[]=[];
-  p:number=1;
+  t:number=1;
   constructor(private svc:TableService) { }
 
   ngOnInit() {
