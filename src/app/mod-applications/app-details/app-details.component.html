@@ -50,9 +50,9 @@
                                             <button (click)="isAdd=true" [disabled]="selectedGroup.GroupID==0" type="button" href="#tab_prop" data-toggle="tab" class="btn btn-warning btn-sm pull-right" id="btn_addtable"><i class="fa fa-plus"></i>&nbsp;Add Table</button>
                                         </div>
                                         <div class="panel-body" style="height:480px; max-height:480px; overflow-y:auto;">
-                                            <div id="apptablelist" class="input-sm">
+                                            <div id="apptablelist" *ngFor="let tb of tables" class="input-sm">
                                                 <!--app table list component here-->
-                                                <table-list></table-list>
+                                                <table-list [tbl]="tb"></table-list>
                                             </div>
                                         </div>
                                     </div>
@@ -64,9 +64,9 @@
                                             <button (click)="isAdd=true" [disabled]="selectedGroup.GroupID==0" type="button" href="#mod_prop" data-toggle="tab" id="btn_adduser" class="btn btn-danger btn-sm pull-right"><i class="fa fa-plus"></i>&nbsp;Add Module</button>
                                         </div>
                                         <div class="panel-body" style="height:480px; max-height:480px; overflow-y:auto;">
-                                            <div id="appmodulelist" class="input-sm">
+                                            <div id="appmodulelist" *ngFor="let mo of modules" class="input-sm">
                                                 <!--app module list component here-->
-                                                <module-list></module-list>
+                                                <module-list [mod]="mo"></module-list>
                                             </div>
                                         </div>
                                     </div>
@@ -78,9 +78,9 @@
                                             <button (click)="isAdd=true" [disabled]="selectedGroup.GroupID==0" type="button" href="#usr_prop" data-toggle="tab" id="btn_adduser" class="btn btn-success btn-sm pull-right"><i class="fa fa-plus"></i>&nbsp;Add User</button>
                                         </div>
                                         <div class="panel-body" style="height:480px; max-height:480px; overflow-y:auto;">
-                                            <div id="appuserlist" class="input-sm">
+                                            <div id="appuserlist" *ngFor="let usr of users" class="input-sm">
                                                 <!--app user list component here-->
-                                                <user-list></user-list>
+                                                <user-list [user]="usr" ></user-list>
                                             </div>
                                         </div>
                                     </div>

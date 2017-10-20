@@ -52,4 +52,12 @@ export class ApplicationGroupService {
         }
         return new Promise<Groups[]>((r)=>r(groups));
     }
+
+    public async getAppGroup(applicationID:number,groupID:number):Promise<ApplicationGroups>{
+        var appGroups:ApplicationGroups[]=await this.getAll();
+        var appGroup:ApplicationGroups=appGroups.find(x=>x.ApplicationID==applicationID && x.GroupID==groupID)
+    
+        return new Promise<ApplicationGroups>((r)=>r(appGroup));
+    }
+
 }

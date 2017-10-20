@@ -24,12 +24,15 @@ import { GroupService } from '../com_services/group.service';
 import { ModuleService } from '../com_services/module.service';
 //transactional services
 import { ApplicationGroupService } from '../com_services/app-group.service';
+import { ApplicationGroupUserService } from '../com_services/appgroup-user.service';
+import { ApplicationGroupTableService } from '../com_services/appgroup-table.service';
+import { ApplicationGroupModuleService } from '../com_services/appgroup-module.service';
 @NgModule({
   imports: [
     CommonModule,NgxPaginationModule,ApplicationsRouting
   ],
   providers:[ApplicationService,UserService,TableService,GroupService,ModuleService,
-    ApplicationGroupService],
+    ApplicationGroupService,ApplicationGroupUserService,ApplicationGroupModuleService,ApplicationGroupTableService],
   declarations: [ApplicationsComponent, 
     ApplicationListsComponent, AppDetailsComponent, 
     GroupListComponent, UserListComponent, TableListComponent, TablePropComponent, GroupPropComponent, ModulePropComponent, UserPropComponent, ModuleListComponent,]
