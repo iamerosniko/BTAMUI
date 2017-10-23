@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col-md-12">
                 <!--if add group-->
-                <button *ngIf="isAdd" [disabled]="usr.UserID==0" class="btn btn-primary btn-sm pull-right">
+                <button *ngIf="isAdd" (click)="saveChanges()" [disabled]="usr.UserID==0" class="btn btn-primary btn-sm pull-right">
                     <i class="fa fa-floppy-o"></i>&nbsp;Save
                 </button>
                 <!--if group property-->

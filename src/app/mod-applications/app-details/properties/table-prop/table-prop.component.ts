@@ -16,7 +16,6 @@ export class TablePropComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.getDependencies();
-    console.log('sampo')
   }
 
   ngOnChanges(){
