@@ -45,12 +45,16 @@
 
                 <table class="table table-bordered table-hover table-striped input-sm">
                     <thead>
-                        <tr><th>Module ID</th><th>Module Name</th></tr>
+                        <tr><th>Module Name</th></tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let u of modules | paginate: { id:'p_module', itemsPerPage: 5, currentPage: p }">
-                            <td>{{u.ModuleID}}</td>
-                            <td>{{u.ModuleName}}</td>
+                            <!-- <td>{{u.ModuleID}}</td> -->
+                            <td>
+                                <a  >
+                                    {{u.ModuleName}}
+                                </a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

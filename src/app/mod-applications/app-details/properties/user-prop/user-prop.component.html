@@ -46,11 +46,11 @@
 
                 <table class="table table-bordered table-hover table-striped input-sm">
                     <thead>
-                        <tr><th>User ID</th><th>User Name</th><th>Last Name</th><th>First Name</th></tr>
+                        <tr><th>User Name</th><th>Last Name</th><th>First Name</th></tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let u of users  | paginate: {id: 'p_user', itemsPerPage: 5, currentPage: p }">
-                            <td>{{u.UserID}}</td>
+                            <!-- <td>{{u.UserID}}</td> -->
                             <td>{{u.UserName}}</td>
                             <td>{{u.UserFirstName}}</td>
                             <td>{{u.UserLastName}}</td>

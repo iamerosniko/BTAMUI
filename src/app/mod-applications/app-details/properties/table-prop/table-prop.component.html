@@ -58,11 +58,11 @@
 
                 <table class="table table-bordered table-hover table-striped input-sm">
                     <thead>
-                        <tr><th>Table ID</th><th>Table Name</th></tr>
+                        <tr><th>Table Name</th></tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let u of tables | paginate: { id:'p_table', itemsPerPage: 5, currentPage: t }">
-                            <td>{{u.TableID}}</td>
+                            <!-- <td>{{u.TableID}}</td> -->
                             <td>{{u.TableName}}</td>
                         </tr>
                     </tbody>
