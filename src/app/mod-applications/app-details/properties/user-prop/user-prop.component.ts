@@ -30,6 +30,7 @@ export class UserPropComponent implements OnInit,OnChanges {
 
   go(u:any){
     console.log(u);
+    this.usr=<Users>u;
   }
 
   async getDependencies(){
