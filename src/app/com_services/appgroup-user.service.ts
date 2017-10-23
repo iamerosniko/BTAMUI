@@ -50,7 +50,7 @@ export class ApplicationGroupUserService {
                 users=await users.concat(user);
             }
         }
-        console.log(users);
+        // console.log(users);
         return new Promise<Users[]>((r)=>r(users));
     }
 }

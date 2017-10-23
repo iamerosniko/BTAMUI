@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms'
 
 import { ApplicationsComponent } from './applications.component';
 import { ApplicationListsComponent } from './application-lists/application-lists.component';
@@ -29,7 +30,7 @@ import { ApplicationGroupTableService } from '../com_services/appgroup-table.ser
 import { ApplicationGroupModuleService } from '../com_services/appgroup-module.service';
 @NgModule({
   imports: [
-    CommonModule,NgxPaginationModule,ApplicationsRouting
+    CommonModule,NgxPaginationModule,FormsModule,ApplicationsRouting
   ],
   providers:[ApplicationService,UserService,TableService,GroupService,ModuleService,
     ApplicationGroupService,ApplicationGroupUserService,ApplicationGroupModuleService,ApplicationGroupTableService],

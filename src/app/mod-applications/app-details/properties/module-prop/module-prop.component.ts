@@ -7,6 +7,8 @@ import { Modules,ModuleService } from '../../../../com_services/module.service';
 })
 export class ModulePropComponent implements OnInit {
   @Input() isAdd:boolean;
+  @Input() mdl:any;
+  @Input() appGroup:any;
   modules:Modules[]=[];
   p:number=1;
   constructor(private modSvc:ModuleService) { }

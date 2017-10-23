@@ -22,7 +22,9 @@ export class AppDetailsComponent implements OnInit {
   users:Users[]=[];
   appGrp:ApplicationGroups={};
   selectedGroup:Groups={GroupID:0};
-
+  selectedTable:Tables={TableID:0};
+  selectedModule:Modules={ModuleID:0};
+  selectedUser:Users={UserID:0};
   isAdd:boolean=true;
   constructor(public route: ActivatedRoute,
     private router: Router,
@@ -41,6 +43,21 @@ export class AppDetailsComponent implements OnInit {
   async selectGroup(selectedGroup:Groups){
     this.selectedGroup= await selectedGroup;
     await this.populate(this.application.ApplicationID,this.selectedGroup.GroupID);
+  }
+
+  async selectTable(selectedTable:Tables){
+    this.selectedTable=await selectedTable;
+    this.isAdd=false;
+  }
+
+  async selectModule(selectedmodule:Modules){
+    this.selectedModule=await selectedmodule;
+    this.isAdd=false;
+  }
+
+  async selectUser(selectedUser:Tables){
+    this.selectedUser=await selectedUser;
+    this.isAdd=false;
   }
 
   async populate(appID:number,groupID:number){

@@ -52,7 +52,7 @@
                                         <div class="panel-body" style="height:480px; max-height:480px; overflow-y:auto;">
                                             <div id="apptablelist" *ngFor="let tb of tables" class="input-sm">
                                                 <!--app table list component here-->
-                                                <table-list [tbl]="tb"></table-list>
+                                                <table-list [tbl]="tb" (detail)="selectTable($event)"></table-list>
                                             </div>
                                         </div>
                                     </div>
@@ -66,7 +66,7 @@
                                         <div class="panel-body" style="height:480px; max-height:480px; overflow-y:auto;">
                                             <div id="appmodulelist" *ngFor="let mo of modules" class="input-sm">
                                                 <!--app module list component here-->
-                                                <module-list [mod]="mo"></module-list>
+                                                <module-list [mod]="mo" (detail)="selectModule($event)" ></module-list>
                                             </div>
                                         </div>
                                     </div>
@@ -80,7 +80,7 @@
                                         <div class="panel-body" style="height:480px; max-height:480px; overflow-y:auto;">
                                             <div id="appuserlist" *ngFor="let usr of users" class="input-sm">
                                                 <!--app user list component here-->
-                                                <user-list [user]="usr" ></user-list>
+                                                <user-list [user]="usr" (detail)="selectUser($event)" ></user-list>
                                             </div>
                                         </div>
                                     </div>
@@ -114,7 +114,7 @@
                                 <div class="col-md-6">
                                     <div id="tab_prop_view">
                                         <!--table property view-->
-                                        <table-prop [isAdd]="isAdd"></table-prop>
+                                        <table-prop [isAdd]="isAdd" [tbl]="selectedTable"></table-prop>
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +130,7 @@
                                 <div class="col-md-6">
                                     <div id="mod_prop_view">
                                         <!--module property view-->
-                                        <module-prop [isAdd]="isAdd"></module-prop>
+                                        <module-prop [isAdd]="isAdd"  [mdl]="selectedModule"></module-prop>
                                     </div>
                                 </div>
                             </div>
@@ -146,7 +146,7 @@
                                 <div class="col-md-6">
                                     <div id="usr_prop_view">
                                         <!--user property view-->
-                                        <user-prop [isAdd]="isAdd"></user-prop>
+                                        <user-prop [isAdd]="isAdd"  [usr]="selectedUser"></user-prop>
                                     </div>
                                 </div>
                             </div>

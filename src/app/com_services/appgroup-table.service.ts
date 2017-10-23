@@ -54,7 +54,7 @@ export class ApplicationGroupTableService {
                 tables=await tables.concat(tbl);
             }
         }
-        console.log(tables);
+        // console.log(tables);
         return new Promise<Tables[]>((r)=>r(tables));
     }
 }

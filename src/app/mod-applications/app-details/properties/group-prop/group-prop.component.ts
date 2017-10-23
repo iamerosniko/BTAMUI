@@ -7,6 +7,8 @@ import { Component, OnInit,Input } from '@angular/core';
 })
 export class GroupPropComponent implements OnInit {
 @Input() isAdd:boolean;
+@Input() grp:any;
+@Input() appGroup:any;
   constructor() { }
 
   ngOnInit() {

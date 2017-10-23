@@ -8,6 +8,8 @@ import { Users,UserService } from '../../../../com_services/user.service';
 })
 export class UserPropComponent implements OnInit {
   @Input() isAdd:boolean;
+  @Input() usr:any;
+  @Input() appGroup:any;
   users:Users[]=[];
   u:number=1;
   constructor(private svc:UserService) { }
