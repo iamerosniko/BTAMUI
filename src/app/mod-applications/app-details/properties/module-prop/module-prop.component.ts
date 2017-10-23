@@ -26,6 +26,12 @@ export class ModulePropComponent implements OnInit {
       this.mdl=<Modules>{IsActive:true,ModuleID:0,ModuleName:''};
     }
   }
+
+  selectModule(u:Modules){
+    console.log(u);
+    this.mdl=<Modules>u;
+  }
+
   async getDependencies(){
     this.modules=await this.modSvc.getAll();
     this.modules=this.modules.filter(x=>x.IsActive==true);

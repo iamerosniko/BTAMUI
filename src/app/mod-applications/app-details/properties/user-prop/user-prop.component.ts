@@ -28,7 +28,7 @@ export class UserPropComponent implements OnInit,OnChanges {
     }
   }
 
-  go(u:any){
+  selectUser(u:Users){
     console.log(u);
     this.usr=<Users>u;
   }

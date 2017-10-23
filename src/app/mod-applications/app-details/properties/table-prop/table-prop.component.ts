@@ -29,6 +29,10 @@ export class TablePropComponent implements OnInit, OnChanges {
     }
   }
   
+  selectTable(u:Tables){
+    console.log(u);
+    this.tbl=<Tables>u;
+  }
 
   async getDependencies(){
     this.tables=await this.svc.getAll();

@@ -19,23 +19,23 @@
             <br />
         </div>
         <div class="col-md-12">
-            <input id="canget" type="checkbox" class="css-checkbox med"><label for="canget" class="css-label med elegant input-sm">Can Get</label>
+            <input [disabled]="tbl.TableID==0" id="canget" type="checkbox" class="css-checkbox med"><label for="canget" class="css-label med elegant input-sm">Can Get</label>
         </div>
         <div class="col-md-12">
-            <input id="canpost" type="checkbox" class="css-checkbox med"><label for="canpost" class="css-label med elegant input-sm">Can Post</label>
+            <input [disabled]="tbl.TableID==0" id="canpost" type="checkbox" class="css-checkbox med"><label for="canpost" class="css-label med elegant input-sm">Can Post</label>
         </div>
         <div class="col-md-12">
-            <input id="canput" type="checkbox" class="css-checkbox med"><label for="canput" class="css-label med elegant input-sm">Can Put</label>
+            <input [disabled]="tbl.TableID==0" id="canput" type="checkbox" class="css-checkbox med"><label for="canput" class="css-label med elegant input-sm">Can Put</label>
         </div>
         <div class="col-md-12">
-            <input id="candelete" type="checkbox" class="css-checkbox med"><label for="candelete" class="css-label med elegant input-sm">Can Delete</label>
+            <input [disabled]="tbl.TableID==0" id="candelete" type="checkbox" class="css-checkbox med"><label for="candelete" class="css-label med elegant input-sm">Can Delete</label>
         </div>
     </div>
     <div class="panel-footer">
         <div class="row">
             <div class="col-md-12">
                 <div class="btn-group pull-right">
-                    <a href="#" *ngIf="isAdd" class="btn btn-primary btn-sm"><i class="fa fa-floppy-o"></i>&nbsp;Save</a>
+                    <button *ngIf="isAdd" [disabled]="tbl.TableID==0" class="btn btn-primary btn-sm"><i class="fa fa-floppy-o"></i>&nbsp;Save</button>
                     <a href="#" *ngIf="!isAdd" class="btn btn-danger btn-sm" hidden><i class="fa fa-remove"></i>&nbsp;Remove</a>
                 </div>
             </div>
@@ -61,9 +61,9 @@
                         <tr><th>Table Name</th></tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let u of tables | paginate: { id:'p_table', itemsPerPage: 5, currentPage: t }">
+                        <tr style=" cursor:pointer;" (click)="selectTable(u)"  data-dismiss="modal" *ngFor="let u of tables | paginate: { id:'p_table', itemsPerPage: 5, currentPage: t }">
                             <!-- <td>{{u.TableID}}</td> -->
-                            <td style=" cursor:pointer;" >{{u.TableName}}</td>
+                            <td >{{u.TableName}}</td>
                         </tr>
                     </tbody>
                 </table>

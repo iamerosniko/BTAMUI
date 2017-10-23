@@ -9,7 +9,7 @@
         <div class="col-md-12">
             <label class="input-sm">Module</label>
             <div class="input-group">
-                <input type="text" class="form-control input-sm" readonly />
+                <input [(ngModel)]="mdl.ModuleName" type="text" class="form-control input-sm" readonly />
                 <span class="input-group-btn">
                     <button [disabled]="" type="button" data-toggle="modal" data-target="#modal_search3" class="btn btn-default btn-sm">
                         <i class="fa fa-search"></i>
@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col-md-12">
                 <!--if add group-->
-                <a href="#" *ngIf="isAdd" class="btn btn-primary btn-sm pull-right"><i class="fa fa-floppy-o"></i>&nbsp;Save</a>
+                <button href="#" *ngIf="isAdd" [disabled]="mdl.ModuleID==0" class="btn btn-primary btn-sm pull-right"><i class="fa fa-floppy-o"></i>&nbsp;Save</button>
                 <!--if group property-->
                 <a href="#" *ngIf="!isAdd" class="btn btn-danger btn-sm pull-right" hidden><i class="fa fa-remove"></i>&nbsp;Remove</a>
             </div>
@@ -48,9 +48,9 @@
                         <tr><th>Module Name</th></tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let u of modules | paginate: { id:'p_module', itemsPerPage: 5, currentPage: p }">
+                        <tr style=" cursor:pointer;" (click)="selectModule(u)"  data-dismiss="modal"  *ngFor="let u of modules | paginate: { id:'p_module', itemsPerPage: 5, currentPage: p }">
                             <!-- <td>{{u.ModuleID}}</td> -->
-                            <td style=" cursor:pointer;">
+                            <td>
                                 <a >
                                     {{u.ModuleName}}
                                 </a>
