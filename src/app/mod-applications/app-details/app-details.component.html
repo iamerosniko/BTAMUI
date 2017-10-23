@@ -98,7 +98,7 @@
                                 <div class="col-md-6">
                                     <div id="grp_prop_view">
                                         <!--group property view-->
-                                        <group-prop [isAdd]="isAdd"></group-prop>
+                                        <group-prop [isAdd]="isAdd" [appGroup]="appGrp"></group-prop>
                                     </div>
                                 </div>
                             </div>
@@ -114,7 +114,7 @@
                                 <div class="col-md-6">
                                     <div id="tab_prop_view">
                                         <!--table property view-->
-                                        <table-prop [isAdd]="isAdd" [tbl]="selectedTable"></table-prop>
+                                        <table-prop [isAdd]="isAdd" [tbl]="selectedTable"  [appGroup]="appGrp"></table-prop>
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +130,7 @@
                                 <div class="col-md-6">
                                     <div id="mod_prop_view">
                                         <!--module property view-->
-                                        <module-prop [isAdd]="isAdd"  [mdl]="selectedModule"></module-prop>
+                                        <module-prop [isAdd]="isAdd"  [appGroup]="appGrp" [mdl]="selectedModule"></module-prop>
                                     </div>
                                 </div>
                             </div>
@@ -146,7 +146,7 @@
                                 <div class="col-md-6">
                                     <div id="usr_prop_view">
                                         <!--user property view-->
-                                        <user-prop [isAdd]="isAdd"  [usr]="selectedUser"></user-prop>
+                                        <user-prop [isAdd]="isAdd"  [appGroup]="appGrp" [usr]="selectedUser"></user-prop>
                                     </div>
                                 </div>
                             </div>

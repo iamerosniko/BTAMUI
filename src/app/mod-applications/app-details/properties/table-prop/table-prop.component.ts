@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input,OnChanges } from '@angular/core';
 
 import { Tables,TableService } from '../../../../com_services/table.service';
 @Component({  
@@ -6,7 +6,7 @@ import { Tables,TableService } from '../../../../com_services/table.service';
   templateUrl: './table-prop.component.html',
   styleUrls: ['./table-prop.component.css']
 })
-export class TablePropComponent implements OnInit {
+export class TablePropComponent implements OnInit, OnChanges {
   @Input() isAdd:boolean;
   @Input() tbl:any;
   @Input() appGroup:any;
@@ -16,7 +16,19 @@ export class TablePropComponent implements OnInit {
 
   ngOnInit() {
     this.getDependencies();
+    console.log('sampo')
   }
+
+  ngOnChanges(){
+    this.checkValue();
+  }
+
+  async checkValue(){
+    if(this.isAdd){
+      this.tbl=<Tables>{IsActive:true,TableID:0,TableName:''};
+    }
+  }
+  
 
   async getDependencies(){
     this.tables=await this.svc.getAll();

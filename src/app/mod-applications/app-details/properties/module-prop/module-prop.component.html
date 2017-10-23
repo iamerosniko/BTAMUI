@@ -11,7 +11,7 @@
             <div class="input-group">
                 <input type="text" class="form-control input-sm" readonly />
                 <span class="input-group-btn">
-                    <button type="button" data-toggle="modal" data-target="#modal_search3" class="btn btn-default btn-sm">
+                    <button [disabled]="" type="button" data-toggle="modal" data-target="#modal_search3" class="btn btn-default btn-sm">
                         <i class="fa fa-search"></i>
                     </button>
                 </span>
@@ -50,8 +50,8 @@
                     <tbody>
                         <tr *ngFor="let u of modules | paginate: { id:'p_module', itemsPerPage: 5, currentPage: p }">
                             <!-- <td>{{u.ModuleID}}</td> -->
-                            <td>
-                                <a  >
+                            <td style=" cursor:pointer;">
+                                <a >
                                     {{u.ModuleName}}
                                 </a>
                             </td>

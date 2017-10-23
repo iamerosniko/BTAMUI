@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input,OnChanges } from '@angular/core';
 import { Users,UserService } from '../../../../com_services/user.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { Users,UserService } from '../../../../com_services/user.service';
   templateUrl: './user-prop.component.html',
   styleUrls: ['./user-prop.component.css']
 })
-export class UserPropComponent implements OnInit {
+export class UserPropComponent implements OnInit,OnChanges {
   @Input() isAdd:boolean;
   @Input() usr:any;
   @Input() appGroup:any;
@@ -16,6 +16,20 @@ export class UserPropComponent implements OnInit {
 
   ngOnInit() {
     this.getDependencies();
+  }
+
+  ngOnChanges(){
+    this.checkValue();
+  }
+
+  async checkValue(){
+    if(this.isAdd){
+      this.usr=<Users>{IsActive:true,UserID:0,UserName:'',UserMiddleName:'',UserFirstName:'',UserLastName:''}
+    }
+  }
+
+  go(u:any){
+    console.log(u);
   }
 
   async getDependencies(){

@@ -9,9 +9,9 @@
         <div class="col-md-12">
             <label class="input-sm">Table</label>
             <div class="input-group">
-                <input type="text" class="form-control input-sm" readonly />
+                <input type="text" [(ngModel)]="tbl.TableName" class="form-control input-sm" readonly />
                 <span class="input-group-btn">
-                    <button type="button" data-toggle="modal" data-target="#modal_search2" class="btn btn-default btn-sm">
+                    <button [disabled]="!isAdd" type="button" data-toggle="modal" data-target="#modal_search2" class="btn btn-default btn-sm">
                         <i class="fa fa-search"></i>
                     </button>
                 </span>
@@ -63,7 +63,7 @@
                     <tbody>
                         <tr *ngFor="let u of tables | paginate: { id:'p_table', itemsPerPage: 5, currentPage: t }">
                             <!-- <td>{{u.TableID}}</td> -->
-                            <td>{{u.TableName}}</td>
+                            <td style=" cursor:pointer;" >{{u.TableName}}</td>
                         </tr>
                     </tbody>
                 </table>

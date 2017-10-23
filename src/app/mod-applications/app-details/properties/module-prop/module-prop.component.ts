@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input,OnChanges } from '@angular/core';
 import { Modules,ModuleService } from '../../../../com_services/module.service';
 @Component({
   selector: 'module-prop',
@@ -17,6 +17,15 @@ export class ModulePropComponent implements OnInit {
     this.getDependencies();
   }
 
+  ngOnChanges(){
+    this.checkValue();
+  }
+
+  async checkValue(){
+    if(this.isAdd){
+      this.mdl=<Modules>{IsActive:true,ModuleID:0,ModuleName:''};
+    }
+  }
   async getDependencies(){
     this.modules=await this.modSvc.getAll();
     this.modules=this.modules.filter(x=>x.IsActive==true);
