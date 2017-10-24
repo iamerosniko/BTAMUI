@@ -12,7 +12,7 @@
             <div class="input-group">
                 <input [(ngModel)]="usr.UserFirstName + ' ' +usr.UserLastName" type="text" class="form-control input-sm" readonly />
                 <span class="input-group-btn">
-                    <button type="button" data-toggle="modal" data-target="#modal_search4" class="btn btn-default btn-sm">
+                    <button [disabled]="!isAdd" type="button" data-toggle="modal" data-target="#modal_search4" class="btn btn-default btn-sm">
                         <i class="fa fa-search"></i>
                     </button>
                 </span>
@@ -27,7 +27,7 @@
                     <i class="fa fa-floppy-o"></i>&nbsp;Save
                 </button>
                 <!--if group property-->
-                <a href="#" *ngIf="!isAdd" class="btn btn-danger btn-sm pull-right" hidden><i class="fa fa-remove"></i>&nbsp;Remove</a>
+                <a (click)="removeUser()" *ngIf="!isAdd" class="btn btn-danger btn-sm pull-right" hidden><i class="fa fa-remove"></i>&nbsp;Remove</a>
             </div>
         </div>
     </div>

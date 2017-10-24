@@ -13,8 +13,10 @@ export class UserPropComponent implements OnInit,OnChanges {
   @Input() usr:any;
   @Input() appGroup:any;
   @Output() save:EventEmitter<any>=new EventEmitter();
+
   users:Users[]=[];
   appGroupUser:ApplicationGroupUsers={};
+  appGroupUsers:ApplicationGroupUsers[]=[];
   u:number=1;
   constructor(private userSvc:UserService,private appGrpUserSvc:ApplicationGroupUserService) { }
 
@@ -27,15 +29,23 @@ export class UserPropComponent implements OnInit,OnChanges {
   }
 
   async checkValue(){
+    await this.getDependencies();
     if(this.isAdd){
       this.usr=<Users>{IsActive:true,UserID:0,UserName:'',UserMiddleName:'',UserFirstName:'',UserLastName:''}
     }
     var appGroup:ApplicationGroups=await <ApplicationGroups>this.appGroup;
     //getAppgroupusers
-    var appgroupusers:ApplicationGroupUsers[]=await this.appGrpUserSvc.getAll();
-    appgroupusers=appgroupusers.filter(x=>x.ApplicationGroupID==appGroup.ApplicationGroupID)
-    console.log(appgroupusers)
-  
+    this.appGroupUsers=(await this.appGrpUserSvc.getAll()).
+      filter(x=>x.ApplicationGroupID==appGroup.ApplicationGroupID)
+
+    await this.removeExisting();
+  }
+
+  async removeExisting(){
+    this.appGroupUsers.forEach(element => {
+      this.users= this.users.filter(x=>x.UserID!=element.UserID);
+    });
+    // console.log(this.users);
   }
 
   selectUser(u:Users){
@@ -50,13 +60,25 @@ export class UserPropComponent implements OnInit,OnChanges {
       this.appGroupUser=await {AppGroupUserID:UUID.UUID(),
         ApplicationGroupID:appGroup.ApplicationGroupID, UserID:user.UserID};
     }
-    await console.log(this.appGroupUser);
-    this.save.emit();
+    await this.appGrpUserSvc.post(this.appGroupUser);
+    // await console.log(this.appGroupUser);
+    await this.save.emit();
+  }
+
+  async removeUser(){
+    if( confirm('Are you sure you want to delete?')){
+      var user:Users=await <Users>this.usr;
+      var appgrpuser:ApplicationGroupUsers=await this.appGroupUsers.find(x=>x.UserID==user.UserID);
+      await this.appGrpUserSvc.delete(appgrpuser.AppGroupUserID);
+      await this.save.emit();
+    }
+   // this.appGroupUser=await this.appGroupUsers.find()
+    
   }
 
   async getDependencies(){
-    this.users=await this.userSvc.getAll();
-    this.users=this.users.filter(x=>x.IsActive==true);
+    this.users=(await this.userSvc.getAll()).filter(x=>x.IsActive==true);
+    // await console.log(this.users)
   }
 
 }

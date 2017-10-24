@@ -1,6 +1,8 @@
-import { Component, OnInit,Input,OnChanges } from '@angular/core';
-
+import { Component, OnInit,Input,OnChanges,Output,EventEmitter } from '@angular/core';
 import { Tables,TableService } from '../../../../com_services/table.service';
+import { ApplicationGroups } from '../../../../com_services/app-group.service';
+import { ApplicationGroupTables,ApplicationGroupTableService } from '../../../../com_services/appgroup-table.service';
+import { UUID } from 'angular2-uuid';
 @Component({  
   selector: 'table-prop',
   templateUrl: './table-prop.component.html',
@@ -10,9 +12,13 @@ export class TablePropComponent implements OnInit, OnChanges {
   @Input() isAdd:boolean;
   @Input() tbl:any;
   @Input() appGroup:any;
+  @Output() save:EventEmitter<any>=new EventEmitter();
+
   tables:Tables[]=[];
+  appGroupTable:ApplicationGroupTables={CanDelete:false,CanGet:false,CanPost:false,CanPut:false};
+  appGroupTables:ApplicationGroupTables[]=[];
   t:number=1;
-  constructor(private svc:TableService) { }
+  constructor(private svc:TableService,private appGrpTableSvc:ApplicationGroupTableService) { }
 
   ngOnInit() {
     this.getDependencies();
@@ -23,14 +29,61 @@ export class TablePropComponent implements OnInit, OnChanges {
   }
 
   async checkValue(){
+    await this.getDependencies();
+    var appGroup:ApplicationGroups=await <ApplicationGroups>this.appGroup;
+    //getAppgroupusers
+    this.appGroupTables=(await this.appGrpTableSvc.getAll()).
+      filter(x=>x.ApplicationGroupID==appGroup.ApplicationGroupID)
     if(this.isAdd){
-      this.tbl=<Tables>{IsActive:true,TableID:0,TableName:''};
+      var table:Tables=await <Tables>this.tbl;
+      console.log(table)
+      this.appGroupTable=await {
+        ApplicationGroupID:appGroup.ApplicationGroupID,
+        TableID:table.TableID,AppGroupTableID:UUID.UUID(),
+        CanDelete:false,CanGet:false,CanPost:false,CanPut:false};
+        
     }
+    else{
+      var table:Tables=await <Tables>this.tbl;
+      this.appGroupTable=await this.appGroupTables.find(x=>x.TableID==table.TableID);
+    }
+    await this.removeExisting();
   }
   
-  selectTable(u:Tables){
-    console.log(u);
-    this.tbl=<Tables>u;
+  async removeExisting(){
+    this.appGroupTables.forEach(element => {
+      this.tables= this.tables.filter(x=>x.TableID!=element.TableID);
+    });
+    // console.log(this.users);
+  }
+
+  async selectTable(u:Tables){ 
+    this.tbl=await <Tables>u;
+    this.appGroupTable.TableID=await u.TableID
+
+    console.log(this.appGroupTable)
+  }
+
+  async saveChanges(){
+    console.log(this.appGroupTable);
+    (this.isAdd)?
+      await this.appGrpTableSvc.post(this.appGroupTable):
+      await this.appGrpTableSvc.put(this.appGroupTable,this.appGroupTable.AppGroupTableID);
+    // await console.log(this.appGroupUser);
+    await this.save.emit();
+
+
+  }
+
+  async removeUser(){
+    if( confirm('Are you sure you want to delete?')){
+      var table:Tables=await <Tables>this.tbl;
+      var appgrptable:ApplicationGroupTables=await this.appGroupTables.find(x=>x.TableID==table.TableID);
+      await this.appGrpTableSvc.delete(appgrptable.AppGroupTableID);
+      await this.save.emit();
+    }
+   // this.appGroupUser=await this.appGroupUsers.find()
+    
   }
 
   async getDependencies(){

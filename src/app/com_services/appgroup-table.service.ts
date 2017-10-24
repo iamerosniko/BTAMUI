@@ -5,7 +5,7 @@ import { ApiService } from './api-service';
 import { Tables,TableService } from './table.service';
 
 export interface ApplicationGroupTables{
-    AppGroupModuleID?:string,
+    AppGroupTableID?:string,
     ApplicationGroupID?:string,
     TableID?:number,
     CanGet?:boolean,

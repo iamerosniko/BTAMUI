@@ -47,7 +47,7 @@
                                     <div class="panel panel-warning">
                                         <div class="panel-heading">
                                             <label><i class="fa fa-list"></i>&nbsp;Tables</label>
-                                            <button (click)="isAdd=true" [disabled]="selectedGroup.GroupID==0" type="button" href="#tab_prop" data-toggle="tab" class="btn btn-warning btn-sm pull-right" id="btn_addtable"><i class="fa fa-plus"></i>&nbsp;Add Table</button>
+                                            <button (click)="clearTable()" [disabled]="selectedGroup.GroupID==0" type="button" href="#tab_prop" data-toggle="tab" class="btn btn-warning btn-sm pull-right" id="btn_addtable"><i class="fa fa-plus"></i>&nbsp;Add Table</button>
                                         </div>
                                         <div class="panel-body" style="height:480px; max-height:480px; overflow-y:auto;">
                                             <div id="apptablelist" *ngFor="let tb of tables" class="input-sm">
@@ -106,7 +106,7 @@
                         <div id="tab_prop" class="tab-pane fade">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a href="#grp_details" data-toggle="tab" class="btn btn-default btn-sm"><i class="fa fa-caret-left"></i>&nbsp;Go Back</a>
+                                    <a href="#grp_details" id="goback" data-toggle="tab" class="btn btn-default btn-sm"><i class="fa fa-caret-left"></i>&nbsp;Go Back</a>
                                 </div>
                             </div>
                             <br />
@@ -114,7 +114,7 @@
                                 <div class="col-md-6">
                                     <div id="tab_prop_view">
                                         <!--table property view-->
-                                        <table-prop [isAdd]="isAdd" [tbl]="selectedTable"  [appGroup]="appGrp"></table-prop>
+                                        <table-prop (save)="saveChanges()" [isAdd]="isAdd" [tbl]="selectedTable"  [appGroup]="appGrp"></table-prop>
                                     </div>
                                 </div>
                             </div>
@@ -122,7 +122,7 @@
                         <div id="mod_prop" class="tab-pane fade">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a href="#grp_details" data-toggle="tab" class="btn btn-default btn-sm"><i class="fa fa-caret-left"></i>&nbsp;Go Back </a>
+                                    <a href="#grp_details" id="goback" data-toggle="tab" class="btn btn-default btn-sm"><i class="fa fa-caret-left"></i>&nbsp;Go Back </a>
                                 </div>
                             </div>
                             <br />
@@ -130,7 +130,7 @@
                                 <div class="col-md-6">
                                     <div id="mod_prop_view">
                                         <!--module property view-->
-                                        <module-prop [isAdd]="isAdd"  [appGroup]="appGrp" [mdl]="selectedModule"></module-prop>
+                                        <module-prop (save)="saveChanges()" [isAdd]="isAdd" [appGroup]="appGrp" [mdl]="selectedModule"></module-prop>
                                     </div>
                                 </div>
                             </div>
@@ -138,7 +138,7 @@
                         <div id="usr_prop" class="tab-pane fade">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a href="#grp_details" data-toggle="tab" class="btn btn-default btn-sm"><i class="fa fa-caret-left"></i>&nbsp;Go Back</a>
+                                    <a href="#grp_details" id="goback" data-toggle="tab" class="btn btn-default btn-sm"><i class="fa fa-caret-left"></i>&nbsp;Go Back</a>
                                 </div>
                             </div>
                             <br />
@@ -146,7 +146,7 @@
                                 <div class="col-md-6">
                                     <div id="usr_prop_view">
                                         <!--user property view-->
-                                        <user-prop [isAdd]="isAdd"  [appGroup]="appGrp" [usr]="selectedUser"></user-prop>
+                                        <user-prop (save)="saveChanges()" [isAdd]="isAdd" [appGroup]="appGrp" [usr]="selectedUser"></user-prop>
                                     </div>
                                 </div>
                             </div>

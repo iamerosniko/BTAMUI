@@ -40,6 +40,12 @@ export class AppDetailsComponent implements OnInit {
     this.getDependencies();
   }
 
+  async saveChanges(){
+    await this.selectGroup(this.selectedGroup);
+    await alert('Updated Successfully')
+    await document.getElementById('goback').click();
+  }
+
   async selectGroup(selectedGroup:Groups){
     this.selectedGroup= await selectedGroup;
     await this.populate(this.application.ApplicationID,this.selectedGroup.GroupID);
@@ -60,13 +66,17 @@ export class AppDetailsComponent implements OnInit {
     this.isAdd=false;
   }
 
+  async clearTable(){
+    this.isAdd=true;
+    this.selectedTable=await {TableID:0};
+  }
+
   async populate(appID:number,groupID:number){
     this.appGrp = await this.appGrpSvc.getAppGroup(appID,groupID);
     if(this.appGrp!=null){
-      this.modules=await this.appGrpModuleSvc.getModules(this.appGrp.ApplicationGroupID);
-      this.users=await this.appGrpUserSvc.getUsers(this.appGrp.ApplicationGroupID);
-      this.tables=await this.appGrpTableSvc.getTables(this.appGrp.ApplicationGroupID);
-
+      this.modules=(await this.appGrpModuleSvc.getModules(this.appGrp.ApplicationGroupID)).filter(x=>x.IsActive==true);
+      this.users=(await this.appGrpUserSvc.getUsers(this.appGrp.ApplicationGroupID)).filter(x=>x.IsActive==true);
+      this.tables=(await this.appGrpTableSvc.getTables(this.appGrp.ApplicationGroupID)).filter(x=>x.IsActive==true);
     }
   }
 
