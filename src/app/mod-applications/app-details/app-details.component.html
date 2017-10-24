@@ -32,7 +32,7 @@
                         <div class="col-md-12">
                             <div class="panel">
                                 <div class="panel-body">
-                                    <a (click)="isAdd=false" href="#grp_prop" data-toggle="tab" class="close"><i class="fa fa-cog"></i></a>
+                                    <a *ngIf="selectedGroup.GroupID>0" (click)="isAdd=false" href="#grp_prop" data-toggle="tab" class="close"><i class="fa fa-cog"></i></a>
                                     <h4><i class="fa fa-desktop"></i>&nbsp;{{application.ApplicationName}}</h4>
                                     <h5>{{selectedGroup.GroupName}}</h5>
                                 </div>
@@ -98,7 +98,7 @@
                                 <div class="col-md-6">
                                     <div id="grp_prop_view">
                                         <!--group property view-->
-                                        <group-prop [isAdd]="isAdd" [appGroup]="appGrp"></group-prop>
+                                        <group-prop [isAdd]="isAdd" [applicationID]="application.ApplicationID"></group-prop>
                                     </div>
                                 </div>
                             </div>

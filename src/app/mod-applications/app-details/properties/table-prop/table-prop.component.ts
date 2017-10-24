@@ -15,7 +15,7 @@ export class TablePropComponent implements OnInit, OnChanges {
   @Output() save:EventEmitter<any>=new EventEmitter();
 
   tables:Tables[]=[];
-  appGroupTable:ApplicationGroupTables={CanDelete:false,CanGet:false,CanPost:false,CanPut:false};
+  appGroupTable:ApplicationGroupTables={};
   appGroupTables:ApplicationGroupTables[]=[];
   t:number=1;
   constructor(private svc:TableService,private appGrpTableSvc:ApplicationGroupTableService) { }
@@ -36,16 +36,17 @@ export class TablePropComponent implements OnInit, OnChanges {
       filter(x=>x.ApplicationGroupID==appGroup.ApplicationGroupID)
     if(this.isAdd){
       var table:Tables=await <Tables>this.tbl;
-      console.log(table)
       this.appGroupTable=await {
         ApplicationGroupID:appGroup.ApplicationGroupID,
         TableID:table.TableID,AppGroupTableID:UUID.UUID(),
         CanDelete:false,CanGet:false,CanPost:false,CanPut:false};
-        
     }
     else{
       var table:Tables=await <Tables>this.tbl;
       this.appGroupTable=await this.appGroupTables.find(x=>x.TableID==table.TableID);
+      if(this.appGroupTable==null){
+        this.appGroupTable=await { CanDelete:false,CanGet:false,CanPost:false,CanPut:false };
+      }
     }
     await this.removeExisting();
   }

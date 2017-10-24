@@ -45,31 +45,18 @@
 
                 <table class="table table-bordered table-hover table-striped input-sm">
                     <thead>
-                        <tr><th>Group ID</th><th>Group Name</th><th>Group Description</th></tr>
+                        <tr><th>Group Name</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>1</td><td>Test Group</td><td>Testing</td></tr>
+                        <tr (click)="selectUser(u)" data-dismiss="modal" style=" cursor:pointer;" *ngFor="let u of groups  | paginate: {id: 'p_groups', itemsPerPage: 5, currentPage: p }">
+                            <!-- <td>{{u.UserID}}</td> -->
+                            <td>{{u.GroupName}}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
             <div class="modal-footer">
-                <ul class="pagination pagination-sm pull-right">
-                    <li>
-                        <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
+                <pagination-controls id="p_groups" (pageChange)="p = $event"></pagination-controls> 
             </div>
         </div>
     </div>

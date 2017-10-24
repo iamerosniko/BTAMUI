@@ -22,7 +22,7 @@ export class AppDetailsComponent implements OnInit {
   users:Users[]=[];
   appGrp:ApplicationGroups={};
   selectedGroup:Groups={GroupID:0};
-  selectedTable:Tables={TableID:0};
+  selectedTable:Tables={TableID:0,TableName:''};
   selectedModule:Modules={ModuleID:0};
   selectedUser:Users={UserID:0};
   isAdd:boolean=true;
