@@ -24,7 +24,7 @@
                 <!--if add group-->
                 <button *ngIf="isAdd" (click)="saveChanges()" [disabled]="mdl.ModuleID==0" class="btn btn-primary btn-sm pull-right"><i class="fa fa-floppy-o"></i>&nbsp;Save</button>
                 <!--if group property-->
-                <a (click)="removeUser()" *ngIf="!isAdd" class="btn btn-danger btn-sm pull-right" hidden><i class="fa fa-remove"></i>&nbsp;Remove</a>
+                <a (click)="removeModule()" *ngIf="!isAdd" class="btn btn-danger btn-sm pull-right" hidden><i class="fa fa-remove"></i>&nbsp;Remove</a>
             </div>
         </div>
     </div>

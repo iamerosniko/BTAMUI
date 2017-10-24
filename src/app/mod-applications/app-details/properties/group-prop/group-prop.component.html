@@ -9,9 +9,9 @@
         <div class="col-md-12">
             <label class="input-sm">Group</label>
             <div class="input-group">
-                <input type="text" class="form-control input-sm" readonly />
+                <input [(ngModel)]="grp.GroupName" type="text" class="form-control input-sm" readonly />
                 <span class="input-group-btn">
-                    <button type="button" data-toggle="modal" data-target="#modal_search" class="btn btn-default btn-sm">
+                    <button (click)="search()" [disabled]="!isAdd" type="button" data-toggle="modal" data-target="#modal_search" class="btn btn-default btn-sm">
                         <i class="fa fa-search"></i>
                     </button>
                 </span>
@@ -22,9 +22,9 @@
         <div class="row">
             <div class="col-md-12">
                 <!--if add group-->
-                <a href="#" *ngIf="isAdd" class="btn btn-primary btn-sm pull-right"><i class="fa fa-floppy-o"></i>&nbsp;Save</a>
+                <a (click)="saveChanges()" *ngIf="isAdd"  class="btn btn-primary btn-sm pull-right"><i class="fa fa-floppy-o"></i>&nbsp;Save</a>
                 <!--if group property-->
-                <a href="#" *ngIf="!isAdd" class="btn btn-danger btn-sm pull-right"><i class="fa fa-remove"></i>&nbsp;Remove</a>
+                <a (click)="removeAppGroup()" *ngIf="!isAdd" class="btn btn-danger btn-sm pull-right"><i class="fa fa-remove"></i>&nbsp;Remove</a>
             </div>
         </div>
     </div>
@@ -48,7 +48,7 @@
                         <tr><th>Group Name</th></tr>
                     </thead>
                     <tbody>
-                        <tr (click)="selectUser(u)" data-dismiss="modal" style=" cursor:pointer;" *ngFor="let u of groups  | paginate: {id: 'p_groups', itemsPerPage: 5, currentPage: p }">
+                        <tr (click)="selectGroup(u)" data-dismiss="modal" style=" cursor:pointer;" *ngFor="let u of groups  | paginate: {id: 'p_groups', itemsPerPage: 5, currentPage: p }">
                             <!-- <td>{{u.UserID}}</td> -->
                             <td>{{u.GroupName}}</td>
                         </tr>

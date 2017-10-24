@@ -3,6 +3,9 @@ import { Headers, Http } from '@angular/http';
 import { AppSettings } from '../com_entities/app-settings';
 import { ApplicationService } from './application.service';
 import { GroupService,Groups } from './group.service';
+import { ApplicationGroupModules,ApplicationGroupModuleService } from './appgroup-module.service';
+import { ApplicationGroupTables,ApplicationGroupTableService } from './appgroup-table.service';
+import { ApplicationGroupUsers,ApplicationGroupUserService } from './appgroup-user.service';
 import { ApiService } from './api-service';
 
 export interface ApplicationGroups{
@@ -18,7 +21,10 @@ export class ApplicationGroupService {
 
     constructor(private http:Http,private api:ApiService,
         private appSvc:ApplicationService,
-        private grpSvc:GroupService){
+        private grpSvc:GroupService,
+        private appGrpModSvc:ApplicationGroupModuleService,
+        private appGrpTabSvc:ApplicationGroupTableService,
+        private appGrpUsrSvc:ApplicationGroupUserService){
         
     }
     
@@ -58,6 +64,22 @@ export class ApplicationGroupService {
         var appGroup:ApplicationGroups=appGroups.find(x=>x.ApplicationID==applicationID && x.GroupID==groupID)
     
         return new Promise<ApplicationGroups>((r)=>r(appGroup));
+    }
+
+    public async dropDependencies(applicationGroupID:string){
+        var agUsers:ApplicationGroupUsers[]=(await this.appGrpUsrSvc.getAll()).filter(x=>x.ApplicationGroupID==applicationGroupID);
+        var agModules:ApplicationGroupModules[]=(await this.appGrpModSvc.getAll()).filter(x=>x.ApplicationGroupID==applicationGroupID);
+        var agTables:ApplicationGroupTables[]=(await this.appGrpTabSvc.getAll()).filter(x=>x.ApplicationGroupID==applicationGroupID);
+
+        agUsers.forEach(e => {
+            this.appGrpUsrSvc.delete(e.AppGroupUserID);
+        });
+        agModules.forEach(e => {
+            this.appGrpModSvc.delete(e.AppGroupModuleID);
+        });
+        agTables.forEach(e => {
+            this.appGrpTabSvc.delete(e.AppGroupTableID);
+        });
     }
 
 }

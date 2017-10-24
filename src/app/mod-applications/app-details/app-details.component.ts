@@ -26,6 +26,8 @@ export class AppDetailsComponent implements OnInit {
   selectedModule:Modules={ModuleID:0};
   selectedUser:Users={UserID:0};
   isAdd:boolean=true;
+  isGroupSelected:boolean=false;
+
   constructor(public route: ActivatedRoute,
     private router: Router,
     private appSvc : ApplicationService,
@@ -46,8 +48,19 @@ export class AppDetailsComponent implements OnInit {
     await document.getElementById('goback').click();
   }
 
+  async saveChanges2(){
+    this.groups=await this.appGrpSvc.getGroups(this.route.snapshot.params['id']);
+    this.appGrp={GroupID:0};
+    this.modules=[];
+    this.tables=[];
+    this.users=[];
+    await alert('Updated Successfully')
+    await document.getElementById('goback').click();
+  }
+
   async selectGroup(selectedGroup:Groups){
     this.selectedGroup= await selectedGroup;
+    // console.log(this.application.ApplicationID)
     await this.populate(this.application.ApplicationID,this.selectedGroup.GroupID);
   }
 

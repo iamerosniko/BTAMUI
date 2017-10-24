@@ -1,7 +1,7 @@
 import { Component, OnInit,Input,OnChanges,Output,EventEmitter } from '@angular/core';
 import { Groups,GroupService } from '../../../../com_services/group.service';
 import { ApplicationGroups,ApplicationGroupService } from '../../../../com_services/app-group.service';
-
+import { ActivatedRoute,Router } from '@angular/router';
 import { UUID } from 'angular2-uuid';
 @Component({
   selector: 'group-prop',
@@ -10,16 +10,21 @@ import { UUID } from 'angular2-uuid';
 })
 export class GroupPropComponent implements OnInit,OnChanges {
 @Input() isAdd:boolean;
+@Input() isSelected:boolean;
 @Input() grp:any;
-@Input() applicationID:number;
 @Output() save:EventEmitter<any>=new EventEmitter();
 
 groups:Groups[]=[];
+applicationID:number=0;
+appGroups:ApplicationGroups[]=[];
   u:number=1;
-  constructor(private grpSvc:GroupService,appGrpSvc:ApplicationGroupService) { }
+  constructor(public route: ActivatedRoute,
+    private router: Router,
+    private grpSvc:GroupService,
+    private appGrpSvc:ApplicationGroupService) { }
 
   ngOnInit() {
-    this.getDependencies();
+    this.applicationID=this.route.snapshot.params['id'];
   }
 
   ngOnChanges(){
@@ -27,51 +32,49 @@ groups:Groups[]=[];
   }
 
   async checkValue(){
-    await this.getDependencies();
-    if(this.isAdd){
+    console.log(this.grp)
+    console.log(this.isAdd)    
+    if(this.isAdd&&this.isSelected){
       this.grp=<Groups>{IsActive:true,GroupID:0,GroupName:''}
     }
   }
 
-  // async removeExisting(){
-  //   this.appGroupUsers.forEach(element => {
-  //     this.users= this.users.filter(x=>x.UserID!=element.UserID);
-  //   });
-  //   // console.log(this.users);
-  // }
+  selectGroup(u:Groups){
+    this.grp=<Groups>u;
+  }
 
-  // selectUser(u:Users){
-  //   console.log(u);
-  //   this.usr=<Users>u;
-  // }
-
-  // async saveChanges(){
-  //   var appGroup:ApplicationGroups=await <ApplicationGroups>this.appGroup;
-  //   var user:Users=await <Users>this.usr;
-  //   if(this.isAdd){
-  //     this.appGroupUser=await {AppGroupUserID:UUID.UUID(),
-  //       ApplicationGroupID:appGroup.ApplicationGroupID, UserID:user.UserID};
-  //   }
-  //   await this.appGrpUserSvc.post(this.appGroupUser);
-  //   // await console.log(this.appGroupUser);
-  //   await this.save.emit();
-  // }
-
-  // async removeUser(){
-  //   if( confirm('Are you sure you want to delete?')){
-  //     var user:Users=await <Users>this.usr;
-  //     var appgrpuser:ApplicationGroupUsers=await this.appGroupUsers.find(x=>x.UserID==user.UserID);
-  //     await this.appGrpUserSvc.delete(appgrpuser.AppGroupUserID);
-  //     await this.save.emit();
-  //   }
-  //  // this.appGroupUser=await this.appGroupUsers.find()
-    
-  // }
-
-  async getDependencies(){
+  async search(){
     this.groups=(await this.grpSvc.getAll()).filter(x=>x.IsActive==true);
-    // await console.log(this.users)
-    await console.log(this.groups)
+    this.appGroups=(await this.appGrpSvc.getAll()).filter(x=>x.ApplicationID==this.applicationID)
+    this.appGroups.forEach(element => {
+      this.groups=this.groups.filter(x=>x.GroupID!=element.GroupID);
+    });
+    
+    console.log(this.appGroups);
+  }
+
+  async saveChanges(){
+    var group:Groups=await <Groups>this.grp;
+    var appGroup:ApplicationGroups=await {ApplicationGroupID:UUID.UUID(),ApplicationID:this.applicationID,GroupID:group.GroupID};
+    // console.log(appGroup)
+    await this.appGrpSvc.post(appGroup);
+    await this.save.emit();
+  }
+
+  async removeAppGroup(){
+    if( confirm('Are you sure you want to delete?')){
+      var group:Groups=await <Groups>this.grp;
+      var appgroup:ApplicationGroups=(await this.appGrpSvc.getAll())
+        .find(x=>x.GroupID==group.GroupID && x.ApplicationID==this.applicationID);
+      await this.removeAppGrpDependencies(appgroup);
+      await this.save.emit();
+    }
+   // this.appGroupUser=await this.appGroupUsers.find()
+  }
+
+  async removeAppGrpDependencies(appGroup:ApplicationGroups){
+    await this.appGrpSvc.delete(appGroup.ApplicationGroupID);
+    await this.appGrpSvc.dropDependencies(appGroup.ApplicationGroupID);
   }
 
 }

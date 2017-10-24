@@ -66,7 +66,7 @@ export class ModulePropComponent implements OnInit {
     await this.save.emit();
   }
 
-  async removeUser(){
+  async removeModule(){
     if( confirm('Are you sure you want to delete?')){
       var mod:Modules=await <Modules>this.mdl;
       var appgrpmodule:ApplicationGroupModules=await this.appGroupModules.find(x=>x.ModuleID==mod.ModuleID);
