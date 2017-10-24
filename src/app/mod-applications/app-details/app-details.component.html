@@ -15,7 +15,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <label><i class="fa fa-list"></i>&nbsp;Groups</label>
-                    <a (click)="isAdd=true;isSelectedGroup=true" href="#grp_prop" data-toggle="tab" id="btn_addgroup" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus"></i>&nbsp;Add Group</a>
+                    <a (click)="isAdd=true;isGroupSelected=true" href="#grp_prop" data-toggle="tab" id="btn_addgroup" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus"></i>&nbsp;Add Group</a>
                 </div>
                 <div class="panel-body container-fluid" style="height:600px; max-height:600px; overflow-y:auto;">
                     <div id="appgrouplist" class="input-sm" *ngFor="let gl of groups">
@@ -32,7 +32,7 @@
                         <div class="col-md-12">
                             <div class="panel">
                                 <div class="panel-body">
-                                    <a *ngIf="selectedGroup.GroupID>0" (click)="isAdd=false;isSelectedGroup=false" href="#grp_prop" data-toggle="tab" class="close"><i class="fa fa-cog"></i></a>
+                                    <a *ngIf="selectedGroup.GroupID>0" (click)="isAdd=false;isGroupSelected=false" href="#grp_prop" data-toggle="tab" class="close"><i class="fa fa-cog"></i></a>
                                     <h4><i class="fa fa-desktop"></i>&nbsp;{{application.ApplicationName}}</h4>
                                     <h5>{{selectedGroup.GroupName}}</h5>
                                 </div>
@@ -98,7 +98,7 @@
                                 <div class="col-md-6">
                                     <div id="grp_prop_view">
                                         <!--group property view-->
-                                        <group-prop [grp]="selectedGroup" (save)="saveChanges2()" [isSelected]="isSelectedGroup" [isAdd]="isAdd"></group-prop>
+                                        <group-prop [grp]="selectedGroup" (save)="saveChanges2()" [isSelected]="isGroupSelected" [isAdd]="isAdd"></group-prop>
                                     </div>
                                 </div>
                             </div>

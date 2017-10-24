@@ -50,7 +50,8 @@ export class AppDetailsComponent implements OnInit {
 
   async saveChanges2(){
     this.groups=await this.appGrpSvc.getGroups(this.route.snapshot.params['id']);
-    this.appGrp={GroupID:0};
+    // this.appGrp={GroupID:0};
+    this.selectedGroup={GroupID:0}
     this.modules=[];
     this.tables=[];
     this.users=[];

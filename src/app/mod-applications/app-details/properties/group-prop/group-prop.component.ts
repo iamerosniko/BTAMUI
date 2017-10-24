@@ -16,8 +16,9 @@ export class GroupPropComponent implements OnInit,OnChanges {
 
 groups:Groups[]=[];
 applicationID:number=0;
+tempGrp:Groups={};
 appGroups:ApplicationGroups[]=[];
-  u:number=1;
+  p:number=1;
   constructor(public route: ActivatedRoute,
     private router: Router,
     private grpSvc:GroupService,
@@ -31,11 +32,16 @@ appGroups:ApplicationGroups[]=[];
     this.checkValue();
   }
 
-  async checkValue(){
-    console.log(this.grp)
-    console.log(this.isAdd)    
+  async checkValue(){    
+    var group:Groups=await <Groups>this.grp;
+    if(group.GroupID>0){
+      this.tempGrp=group;
+    }
     if(this.isAdd&&this.isSelected){
-      this.grp=<Groups>{IsActive:true,GroupID:0,GroupName:''}
+      this.grp=await <Groups>{IsActive:true,GroupID:0,GroupName:''}
+    }
+    else{
+      this.grp=this.tempGrp;
     }
   }
 

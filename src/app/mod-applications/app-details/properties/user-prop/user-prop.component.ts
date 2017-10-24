@@ -17,7 +17,7 @@ export class UserPropComponent implements OnInit,OnChanges {
   users:Users[]=[];
   appGroupUser:ApplicationGroupUsers={};
   appGroupUsers:ApplicationGroupUsers[]=[];
-  u:number=1;
+  p:number=1;
   constructor(private userSvc:UserService,private appGrpUserSvc:ApplicationGroupUserService) { }
 
   ngOnInit() {

@@ -61,7 +61,7 @@
                         <tr><th>Table Name</th></tr>
                     </thead>
                     <tbody>
-                        <tr style=" cursor:pointer;" (click)="selectTable(u)"  data-dismiss="modal" *ngFor="let u of tables | paginate: { id:'p_table', itemsPerPage: 5, currentPage: t }">
+                        <tr style=" cursor:pointer;" (click)="selectTable(u)"  data-dismiss="modal" *ngFor="let u of tables | paginate: { id:'p_table', itemsPerPage: 5, currentPage: p }">
                             <!-- <td>{{u.TableID}}</td> -->
                             <td >{{u.TableName}}</td>
                         </tr>

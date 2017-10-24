@@ -17,7 +17,7 @@ export class TablePropComponent implements OnInit, OnChanges {
   tables:Tables[]=[];
   appGroupTable:ApplicationGroupTables={};
   appGroupTables:ApplicationGroupTables[]=[];
-  t:number=1;
+  p:number=1;
   constructor(private svc:TableService,private appGrpTableSvc:ApplicationGroupTableService) { }
 
   ngOnInit() {
@@ -61,12 +61,9 @@ export class TablePropComponent implements OnInit, OnChanges {
   async selectTable(u:Tables){ 
     this.tbl=await <Tables>u;
     this.appGroupTable.TableID=await u.TableID
-
-    console.log(this.appGroupTable)
   }
 
   async saveChanges(){
-    console.log(this.appGroupTable);
     (this.isAdd)?
       await this.appGrpTableSvc.post(this.appGroupTable):
       await this.appGrpTableSvc.put(this.appGroupTable,this.appGroupTable.AppGroupTableID);
