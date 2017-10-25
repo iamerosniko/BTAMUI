@@ -55,7 +55,6 @@ export class TablePropComponent implements OnInit, OnChanges {
     this.appGroupTables.forEach(element => {
       this.tables= this.tables.filter(x=>x.TableID!=element.TableID);
     });
-    // console.log(this.users);
   }
 
   async selectTable(u:Tables){ 
@@ -67,7 +66,6 @@ export class TablePropComponent implements OnInit, OnChanges {
     (this.isAdd)?
       await this.appGrpTableSvc.post(this.appGroupTable):
       await this.appGrpTableSvc.put(this.appGroupTable,this.appGroupTable.AppGroupTableID);
-    // await console.log(this.appGroupUser);
     await this.save.emit();
 
 

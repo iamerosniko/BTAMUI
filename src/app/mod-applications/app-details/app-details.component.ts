@@ -61,7 +61,6 @@ export class AppDetailsComponent implements OnInit {
 
   async selectGroup(selectedGroup:Groups){
     this.selectedGroup= await selectedGroup;
-    // console.log(this.application.ApplicationID)
     await this.populate(this.application.ApplicationID,this.selectedGroup.GroupID);
   }
 

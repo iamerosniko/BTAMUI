@@ -50,7 +50,6 @@ export class ApplicationGroupModuleService {
                 modules=await modules.concat(mod);
             }
         }
-        // console.log(modules);
         return new Promise<Modules[]>((r)=>r(modules));
     }
 }

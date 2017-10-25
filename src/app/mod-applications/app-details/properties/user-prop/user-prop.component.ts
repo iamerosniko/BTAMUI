@@ -45,11 +45,9 @@ export class UserPropComponent implements OnInit,OnChanges {
     this.appGroupUsers.forEach(element => {
       this.users= this.users.filter(x=>x.UserID!=element.UserID);
     });
-    // console.log(this.users);
   }
 
   selectUser(u:Users){
-    console.log(u);
     this.usr=<Users>u;
   }
 
@@ -61,7 +59,6 @@ export class UserPropComponent implements OnInit,OnChanges {
         ApplicationGroupID:appGroup.ApplicationGroupID, UserID:user.UserID};
     }
     await this.appGrpUserSvc.post(this.appGroupUser);
-    // await console.log(this.appGroupUser);
     await this.save.emit();
   }
 
@@ -78,7 +75,6 @@ export class UserPropComponent implements OnInit,OnChanges {
 
   async getDependencies(){
     this.users=(await this.userSvc.getAll()).filter(x=>x.IsActive==true);
-    // await console.log(this.users)
   }
 
 }

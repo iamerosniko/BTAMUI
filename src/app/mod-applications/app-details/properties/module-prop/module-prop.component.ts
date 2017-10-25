@@ -45,11 +45,9 @@ export class ModulePropComponent implements OnInit {
     this.appGroupModules.forEach(element => {
       this.modules= this.modules.filter(x=>x.ModuleID!=element.ModuleID);
     });
-    // console.log(this.users);
   }
 
   selectModule(u:Modules){
-    console.log(u);
     this.mdl=<Modules>u;
   }
 
@@ -62,7 +60,6 @@ export class ModulePropComponent implements OnInit {
         ApplicationGroupID:appGroup.ApplicationGroupID, ModuleID:mod.ModuleID};
     }
     await this.appGrpModuleSvc.post(this.appGroupModule);
-    // await console.log(this.appGroupUser);
     await this.save.emit();
   }
 

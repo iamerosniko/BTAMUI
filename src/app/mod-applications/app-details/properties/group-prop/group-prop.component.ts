@@ -55,14 +55,11 @@ appGroups:ApplicationGroups[]=[];
     this.appGroups.forEach(element => {
       this.groups=this.groups.filter(x=>x.GroupID!=element.GroupID);
     });
-    
-    console.log(this.appGroups);
   }
 
   async saveChanges(){
     var group:Groups=await <Groups>this.grp;
     var appGroup:ApplicationGroups=await {ApplicationGroupID:UUID.UUID(),ApplicationID:this.applicationID,GroupID:group.GroupID};
-    // console.log(appGroup)
     await this.appGrpSvc.post(appGroup);
     await this.save.emit();
   }

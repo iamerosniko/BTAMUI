@@ -17,7 +17,7 @@
                     <table class="table table-bordered table-striped table-hover input-sm">
                         <thead>
                             <tr>
-                                <th>Application Id</th>
+                                <!-- <th>Application Id</th> -->
                                 <th>Application Name</th>
                                 <th>Is Active</th>
                                 <th>&nbsp;</th>
@@ -25,9 +25,9 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let u of applications | paginate: { itemsPerPage: 5, currentPage: p }">
-                                <td>{{u.ApplicationID}}</td>
+                                <!-- <td>{{u.ApplicationID}}</td> -->
                                 <td>{{u.ApplicationName}}</td>
-                                <td>{{u.IsActive}}</td>
+                                <td>{{(u.IsActive)?'Yes':'No'}}</td>
                                 <td>
                                     <div class="btn-group">
                                         <a (click)="edit(u)" class="btn btn-default btn-xs" data-toggle="tab" data-target="#app_editor" title="Edit"><i class="fa fa-edit"></i></a>
@@ -67,13 +67,13 @@
             <br />
             <!--fields-->
             <form  [formGroup]="myForm" class="form-group" novalidate>
-                <div class="row">
+                <!-- <div class="row">
                     <label class="col-md-2 control-label input-sm">Application Id</label>
                     <div class="col-md-4">
                         <input type="text" class="form-control input-sm"  formControlName="ApplicationID" />
                     </div>
                 </div>
-                <br />
+                <br /> -->
                 <div class="row">
                     <label class="col-md-2 control-label input-sm">Application Name</label>
                     <div class="col-md-4">
