@@ -9,6 +9,7 @@ import { ModuleService,Modules } from '../../com_services/module.service';
 export class MaintenanceModulesComponent implements OnInit {
   mode:number=0;
   p:number=1;
+  search:string='';
   modules:Modules[]=[];
   module:Modules={IsActive:true,ModuleID:0,ModuleName:''};
   myForm:FormGroup;
@@ -43,6 +44,7 @@ export class MaintenanceModulesComponent implements OnInit {
 
   async getDependencies(){
     this.modules=await this.svc.getAll();
+    this.modules=await this.modules.filter(x=>x.ModuleName.toLowerCase().match(this.search.toLowerCase()))
     await this.cleaning();
   }
   async cleaning(){

@@ -9,6 +9,7 @@ import { TableService,Tables } from '../../com_services/table.service';
 export class MaintenanceTablesComponent implements OnInit {
   mode:number=0;
   p:number=1;
+  search:string='';
   tables:Tables[]=[];
   table:Tables={IsActive:true,TableID:0,TableName:''};
   myForm:FormGroup;
@@ -43,6 +44,7 @@ export class MaintenanceTablesComponent implements OnInit {
 
   async getDependencies(){
     this.tables=await this.svc.getAll();
+    this.tables=await this.tables.filter(x=>x.TableName.toLowerCase().match(this.search.toLowerCase()))
     await this.cleaning();
   }
   async cleaning(){

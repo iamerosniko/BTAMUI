@@ -20,7 +20,7 @@ import { HttpModule } from '@angular/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   imports: [
-    CommonModule,ModCommonModule,ReactiveFormsModule,HttpModule,NgxPaginationModule,MaintenanceRouting
+    CommonModule,FormsModule,ModCommonModule,ReactiveFormsModule,HttpModule,NgxPaginationModule,MaintenanceRouting
   ],
   providers:[ApiService,UserService,TableService,GroupService,
     ModuleService,ApplicationService],

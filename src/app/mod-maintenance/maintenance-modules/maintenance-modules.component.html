@@ -7,7 +7,7 @@
                     <a (click)="cleaning()" class="btn btn-primary btn-sm" data-toggle="tab" data-target="#mod_editor"><i class="fa fa-plus"></i>&nbsp;New Record</a>
                 </div>
                 <div class="col-md-3">
-                    <input type="text" placeholder="search..." class="form-control input-sm" />
+                    <input [(ngModel)]="search" (keyup)="refresh()" type="text" placeholder="search..." class="form-control input-sm" />
                 </div>
             </div>
             <br />

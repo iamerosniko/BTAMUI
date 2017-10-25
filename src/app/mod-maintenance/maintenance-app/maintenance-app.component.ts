@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApplicationService,Applications } from '../../com_services/application.service';
 @Component({
@@ -6,9 +6,10 @@ import { ApplicationService,Applications } from '../../com_services/application.
   templateUrl: './maintenance-app.component.html',
   styleUrls: ['./maintenance-app.component.css']
 })
-export class MaintenanceAppComponent implements OnInit {
+export class MaintenanceAppComponent implements OnInit,OnChanges {
   mode:number=0;
   p:number=1;
+  search:string='';
   applications:Applications[]=[];
   application:Applications={IsActive:true,ApplicationID:0,ApplicationName:''};
   myForm:FormGroup;
@@ -43,6 +44,7 @@ export class MaintenanceAppComponent implements OnInit {
 
   async getDependencies(){
     this.applications=await this.svc.getAll();
+    this.applications=await this.applications.filter(x=>x.ApplicationName.toLowerCase().match(this.search.toLowerCase()));
     await this.cleaning();
   }
   async cleaning(){

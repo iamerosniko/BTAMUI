@@ -9,6 +9,7 @@ import { UserService,Users } from '../../com_services/user.service';
 export class MaintenanceUsersComponent implements OnInit {
   mode:number=0;
   p:number=1;
+  search:string='';
   users:Users[]=[];
   user:Users={IsActive:true,UserFirstName:'',UserID:0,UserLastName:'',UserMiddleName:'',UserName:''};
   myForm:FormGroup;
@@ -49,6 +50,8 @@ export class MaintenanceUsersComponent implements OnInit {
 
   async getDependencies(){
     this.users=await this.svc.getAll();
+    this.users=await this.users.filter(x=>x.UserName.toLowerCase().match(this.search.toLowerCase())||
+      x.UserFirstName.toLowerCase().match(this.search.toLowerCase())||x.UserLastName.toLowerCase().match(this.search.toLowerCase()))
     await this.cleaning();
   }
   async cleaning(){

@@ -9,6 +9,7 @@ import { GroupService,Groups } from '../../com_services/group.service';
 export class MaintenanceGroupsComponent implements OnInit {
   mode:number=0;
   p:number=1;
+  search:string='';
   groups:Groups[]=[];
   group:Groups={IsActive:true,GroupID:0,GroupName:''};
   myForm:FormGroup;
@@ -43,6 +44,7 @@ export class MaintenanceGroupsComponent implements OnInit {
 
   async getDependencies(){
     this.groups=await this.svc.getAll();
+    this.groups=await this.groups.filter(x=>x.GroupName.toLowerCase().match(this.search.toLowerCase()))
     await this.cleaning();
   }
   async cleaning(){
