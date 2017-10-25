@@ -3,7 +3,7 @@
     <div id="main" class="tab-pane fade in active">
         <div class="col-md-12">
             <div class="col-md-3 col-md-offset-9">
-                <input type="text" placeholder="search..." class="form-control input-sm" />
+                <input [(ngModel)]="search" (keyup)="getDependencies()" type="text" placeholder="search..." class="form-control input-sm" />
             </div>
             <div class="col-md-12">
                 <hr style="border-bottom: 1px solid #2196F3; margin-left: -15px; margin-right: -15px; " />

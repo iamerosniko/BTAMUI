@@ -13,7 +13,7 @@ export class GroupPropComponent implements OnInit,OnChanges {
 @Input() isSelected:boolean;
 @Input() grp:any;
 @Output() save:EventEmitter<any>=new EventEmitter();
-
+filter:string='';
 groups:Groups[]=[];
 applicationID:number=0;
 tempGrp:Groups={};
@@ -55,6 +55,7 @@ appGroups:ApplicationGroups[]=[];
     this.appGroups.forEach(element => {
       this.groups=this.groups.filter(x=>x.GroupID!=element.GroupID);
     });
+    this.groups=await this.groups.filter(x=>x.GroupName.toLowerCase().match(this.filter.toLowerCase()));
   }
 
   async saveChanges(){

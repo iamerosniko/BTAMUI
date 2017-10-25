@@ -18,6 +18,7 @@ export class ModulePropComponent implements OnInit {
   appGroupModule:ApplicationGroupModules={};
   appGroupModules:ApplicationGroupModules[]=[];
   p:number=1;
+  search:string='';
   constructor(private modSvc:ModuleService,private appGrpModuleSvc:ApplicationGroupModuleService) { }
 
   ngOnInit() {
@@ -45,6 +46,7 @@ export class ModulePropComponent implements OnInit {
     this.appGroupModules.forEach(element => {
       this.modules= this.modules.filter(x=>x.ModuleID!=element.ModuleID);
     });
+    this.modules=this.modules.filter(x=>x.ModuleName.toLowerCase().match(this.search.toLowerCase()))
   }
 
   selectModule(u:Modules){

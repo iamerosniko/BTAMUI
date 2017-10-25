@@ -18,6 +18,7 @@ export class TablePropComponent implements OnInit, OnChanges {
   appGroupTable:ApplicationGroupTables={};
   appGroupTables:ApplicationGroupTables[]=[];
   p:number=1;
+  search:string='';
   constructor(private svc:TableService,private appGrpTableSvc:ApplicationGroupTableService) { }
 
   ngOnInit() {
@@ -55,6 +56,7 @@ export class TablePropComponent implements OnInit, OnChanges {
     this.appGroupTables.forEach(element => {
       this.tables= this.tables.filter(x=>x.TableID!=element.TableID);
     });
+    this.tables=await this.tables.filter(x=>x.TableName.toLowerCase().match(this.search.toLowerCase()))
   }
 
   async selectTable(u:Tables){ 
@@ -67,8 +69,6 @@ export class TablePropComponent implements OnInit, OnChanges {
       await this.appGrpTableSvc.post(this.appGroupTable):
       await this.appGrpTableSvc.put(this.appGroupTable,this.appGroupTable.AppGroupTableID);
     await this.save.emit();
-
-
   }
 
   async removeUser(){

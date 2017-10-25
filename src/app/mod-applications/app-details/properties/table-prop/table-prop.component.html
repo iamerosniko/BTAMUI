@@ -51,7 +51,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <input type="text" placeholder="search..." class="form-control input-sm" />
+                        <input [(ngModel)]="search" (keyup)="checkValue()" type="text" placeholder="search..." class="form-control input-sm" />
                         <br />
                     </div>
                 </div>

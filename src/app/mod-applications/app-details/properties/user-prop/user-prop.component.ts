@@ -18,6 +18,7 @@ export class UserPropComponent implements OnInit,OnChanges {
   appGroupUser:ApplicationGroupUsers={};
   appGroupUsers:ApplicationGroupUsers[]=[];
   p:number=1;
+  search:string='';
   constructor(private userSvc:UserService,private appGrpUserSvc:ApplicationGroupUserService) { }
 
   ngOnInit() {
@@ -45,6 +46,9 @@ export class UserPropComponent implements OnInit,OnChanges {
     this.appGroupUsers.forEach(element => {
       this.users= this.users.filter(x=>x.UserID!=element.UserID);
     });
+    this.users=await this.users.filter(x=>x.UserName.toLowerCase().match(this.search.toLowerCase())||
+      x.UserFirstName.toLowerCase().match(this.search.toLowerCase())||x.UserLastName.toLowerCase().match(this.search.toLowerCase()))
+   
   }
 
   selectUser(u:Users){
